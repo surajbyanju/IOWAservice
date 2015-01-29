@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ea.project.iowaservices.entities;
+package com.bigbang.iowaservices.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
