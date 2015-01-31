@@ -8,8 +8,27 @@
       <ui:composition template="template/template.xhtml">	
          <ui:define name="content">				
             <br/><br/>
-             <h:link value="Page 1" outcome="page1" />
-             <h:link value="Page 2" outcome="page2" />			
+            
+            <div class="login col-lg-3 col-md-offset-3 col-md-3 col-lg-offset-3" >
+                            <h:form>
+                                <div class="input-group">
+                                    <h:outputLabel value="Username"></h:outputLabel>
+                                    <h:inputText id="username"  class="form-control"  />
+                                    
+                                </div>
+                                <div>
+                                    <h:outputLabel value="Password"></h:outputLabel>
+                                    <h:inputSecret id="password"  class="form-control" />
+                                </div>
+                                
+                                <div>
+                                    <h:commandButton value="Sign In" id="signon" class="btn form-control btn-primary "/>
+                                </div>
+                               
+                            </h:form>
+                        </div>
+<!--             <h:link value="Page 1" outcome="page1" />
+             <h:link value="Page 2" outcome="page2" />			-->
             <br/><br/>
          </ui:define>
       </ui:composition>
