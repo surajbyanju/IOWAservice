@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    <h:body>
-        <ui:composition template="template/template.xhtml">	
-            <ui:define name="content">				
-                <br/><br/>
-                    
-                <div class="login col-lg-3 col-md-offset-3 col-md-3 col-lg-offset-3" >
-                    <h:form>
-                        <div class="input-group">
-                            <h:outputLabel value="Username"></h:outputLabel>
-                            <h:inputText id="username"  class="form-control"  />
-                                
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+   <h:body>
+      <ui:composition template="template/template.xhtml">	
+         <ui:define name="content">				
+            <br/><br/>
+            
+            <div class="login col-lg-3 col-md-offset-3 col-md-3 col-lg-offset-3" >
+                           <h2>This is the custom login page. You can define whatever you want here.</h2>
+    
+		<h:form id="loginForm" prependId="false">
+				<!-- Messages must be global here, to show bad credentials -->
+				<h:messages globalOnly="true"/>
+				
+				<!-- Id's must not be changed to support spring security check -->
+				<h:panelGrid columns="3">
+					<h:outputLabel for="j_username" value="User: * " />  
+					<h:inputText id="j_username"  
+			            required="true" label="username"
+			            />  
+			    	
+			    	<h:outputLabel for="j_password" value="Password: * " />  
+					<h:inputSecret id="j_password" label="password"
+			            required="true"
+			            />  
+			    	
+			    	<h:outputLabel for="_spring_security_remember_me" value="Remember me: " />
+					<h:selectBooleanCheckbox
+						id="_spring_security_remember_me" />        
+				</h:panelGrid>
+			
+			<h:commandButton type="submit" id="login" value="Login" action="#{loginController.doLogin}" />
+		</h:form>
                         </div>
-                        <div>
-                            <h:outputLabel value="Password"></h:outputLabel>
-                            <h:inputSecret id="password"  class="form-control" />
-                        </div>
-                            
-                        <div>
-                            <h:commandButton value="Sign In" id="signon" class="btn form-control btn-primary "/>
-                        </div>
-                            
-                    </h:form>
-                </div>
-                <br/><br/>
-            </ui:define>
-        </ui:composition>
-    </h:body>
+
+            <br/><br/>
+         </ui:define>
+      </ui:composition>
+   </h:body>
 </html>	

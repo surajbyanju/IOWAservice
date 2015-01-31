@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+ 
+    <http use-expressions="true" access-denied-page="/accessDenied.jsf">
+        <intercept-url pattern="/protected.jsf" access="hasRole('ROLE_ADMIN')" />
+        <form-login login-page="/login.jsf" authentication-failure-url="/login.jsf?state=failure"/>
+        <logout logout-success-url="/login.jsf?state=logout"  />
+    </http>
+ 
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider>
+            <!--<password-encoder hash="md5" />-->
+            <jdbc-user-service data-source-ref="dataSource"
+                users-by-username-query="SELECT U.username AS username, U.password as password, U.enabled as enabled FROM users U where U.username=?"
+                authorities-by-username-query="SELECT U.username AS username,U.role as role FROM users U where U.username=?"
+                />
+        </authentication-provider>
+    </authentication-manager>
+ 
+</beans:beans>
