@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
     <http use-expressions="true" access-denied-page="/accessDenied.jsf">
-        <intercept-url pattern="/protected.jsf" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/main.jsf" access="hasRole('ROLE_ADMIN')" />
         <form-login login-page="/login.jsf" authentication-failure-url="/login.jsf?state=failure"/>
         <logout logout-success-url="/login.jsf?state=logout"  />
     </http>
