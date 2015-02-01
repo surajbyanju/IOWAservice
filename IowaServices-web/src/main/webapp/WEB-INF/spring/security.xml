@@ -7,7 +7,8 @@
     <http use-expressions="true" access-denied-page="/accessDenied.jsf">
         <intercept-url pattern="/main.jsf" access="hasRole('ROLE_ADMIN')" />
         <form-login login-page="/login.jsf" authentication-failure-url="/login.jsf?state=failure"/>
-        <logout logout-success-url="/login.jsf?state=logout"  />
+        <logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/home.jsf"/>
+
     </http>
  
     <authentication-manager alias="authenticationManager">

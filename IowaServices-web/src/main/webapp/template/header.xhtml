@@ -6,9 +6,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">          
     <body>
         <ui:composition>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header">                
-                <h1>This is default header</h1>
-            </div>   
+            <header class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header">                
+                <h1>IOWA Services   </h1>
+                <ui:fragment rendered="#{request.userPrincipal != null}">
+                    <div style="background-color: antiquewhite; float: right">
+                        Profile || <h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink> 
+                    </div>
+                </ui:fragment>
+            </header> 
+
         </ui:composition>
     </body>
 </html>

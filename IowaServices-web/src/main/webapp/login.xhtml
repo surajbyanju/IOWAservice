@@ -9,32 +9,36 @@
             <ui:define name="content">				
                 <br/><br/>
                     
-                <div class="login col-lg-3 col-md-offset-3 col-md-3 col-lg-offset-3" >
-                    <h2>This is the custom login page. You can define whatever you want here.</h2>
+                <div class="login col-lg-4 col-md-offset-4 col-md-4 col-lg-offset-4">
+                   
                         
+                       <section class="tbl-holder">
                     <h:form id="loginForm" prependId="false">
                         <!-- Messages must be global here, to show bad credentials -->
                         <h:messages globalOnly="true"/>
                             
                         <!-- Id's must not be changed to support spring security check -->
-                        <h:panelGrid columns="3">
+                        <h:panelGrid columns="2" class="tblform">
                             <h:outputLabel for="j_username" value="User: * " />  
                             <h:inputText id="j_username"  
-                                     required="true" label="username"
+                                     required="true" label="username" class="form-control"
                                      />  
                                 
-                                     <h:outputLabel for="j_password" value="Password: * " />  
+                            <h:outputLabel for="j_password" value="Password: * "  />  
                                      <h:inputSecret id="j_password" label="password"
-                                       required="true"
+                                       required="true" class="form-control"
                                        />  
                                 
                                        <h:outputLabel for="_spring_security_remember_me" value="Remember me: " />
                                        <h:selectBooleanCheckbox
-                                           id="_spring_security_remember_me" />        
+                                           id="_spring_security_remember_me" />    
+                                       <h:column > </h:column> 
+                                        <h:commandButton type="submit" id="login" value="Login" class="btn-primary btn" action="#{loginController.doLogin}" />
                         </h:panelGrid>
                             
-                        <h:commandButton type="submit" id="login" value="Login" action="#{loginController.doLogin}" />
+                       
                     </h:form>
+                       </section>
                 </div>
                     
                 <br/><br/>

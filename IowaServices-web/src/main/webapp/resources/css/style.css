@@ -8,6 +8,13 @@ and open the template in the editor.
     Author     : sajana
 */
 
+body{font-family:arial; margin:0; padding:0}
+header{background:#286090; padding:10px; margin:0}
+h1{color:#fff;}
+section.tbl-holder{background:#f5f5f5; border:1px solid #ccc; border-radius:5px; padding:10px; overflow:hidden; margin:20px auto;}
+table.tblform {width:100%}
+table.tblform tr td{padding:5px}
+
 .footer_color{
     background-color: #000;
 }
