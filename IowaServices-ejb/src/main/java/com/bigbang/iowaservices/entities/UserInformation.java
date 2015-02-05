@@ -6,10 +6,12 @@
 package com.bigbang.iowaservices.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,10 +25,14 @@ public class UserInformation implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;
-
+    private String phoneNo;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+    
     public UserInformation() {
+        address = new Address();
     }
-
     
     public Long getId() {
         return id;
@@ -50,6 +56,22 @@ public class UserInformation implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     @Override
