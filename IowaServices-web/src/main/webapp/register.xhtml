@@ -24,10 +24,10 @@
                                 <h:inputText id="username" label="username" class="form-control" value="#{userController.user.username}"/>  
                               
                                 <h:outputLabel for="firstName" value="First Name: * " />  
-                                <h:inputText id="firstName" label="firstName" class="form-control"/>  
+                                <h:inputText id="firstName" label="firstName" class="form-control" value="#{userController.user.userInformation.firstName}"/>  
                               
                                 <h:outputLabel for="lastName" value="Last Name: * " />  
-                                <h:inputText id="lastName" label="lastName" class="form-control"/>  
+                                <h:inputText id="lastName" label="lastName" class="form-control" value="#{userController.user.userInformation.lastName}"/>  
                               
                                 <h:outputLabel for="email" value="Email: * " />  
                                 <h:inputText id="email" label="email" class="form-control"/>  

@@ -53,7 +53,7 @@ public class UserController {
     
     public String register(){
         user.setEnabled(Boolean.TRUE);
-        user.setRole("ROLE_USER");
+        user.setRole("ROLE_ADMIN");
         service.create(user);
         return "home";
     }

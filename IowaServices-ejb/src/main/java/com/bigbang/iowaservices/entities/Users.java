@@ -6,10 +6,12 @@
 package com.bigbang.iowaservices.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,7 +27,14 @@ public class Users implements Serializable {
     private String password;
     private String role;
     private Boolean enabled;
+    @OneToOne(cascade = CascadeType.ALL)
+    private UserInformation userInformation;
 
+    public Users() {
+        userInformation = new UserInformation();
+    }
+
+    
     public Long getId() {
         return id;
     }
@@ -65,9 +74,15 @@ public class Users implements Serializable {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-    
-    
 
+    public UserInformation getUserInformation() {
+        return userInformation;
+    }
+
+    public void setUserInformation(UserInformation userInformation) {
+        this.userInformation = userInformation;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
