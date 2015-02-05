@@ -8,12 +8,11 @@ package com.bigbang.iowservices.beans;
 
 
 import com.bigbang.iowaservices.boundary.UsersFacade;
+import com.bigbang.iowaservices.boundary.UsersFacadeLocal;
 import com.bigbang.iowaservices.entities.Users;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
-import javax.inject.Inject;
 
 /**
  *
@@ -22,17 +21,24 @@ import javax.inject.Inject;
 @ManagedBean
 @RequestScoped
 public class UserController {
-    
     @EJB
-    private UsersFacade usersFacade;
+    UsersFacadeLocal service;
     private Users user;
 
-    public UsersFacade getUsersFacade() {
-        return usersFacade;
+    /**
+     * Creates a new instance of UserController
+     */
+    public UserController() {
+        service = new UsersFacade();
+        user = new Users();
     }
 
-    public void setUsersFacade(UsersFacade usersFacade) {
-        this.usersFacade = usersFacade;
+    public UsersFacadeLocal getService() {
+        return service;
+    }
+
+    public void setService(UsersFacadeLocal service) {
+        this.service = service;
     }
 
     public Users getUser() {
@@ -42,14 +48,13 @@ public class UserController {
     public void setUser(Users user) {
         this.user = user;
     }
-    /**
-     * Creates a new instance of UserController
-     */
-    public UserController() {
-    }
+    
+    
     
     public String register(){
-        this.usersFacade.create(user);
+        user.setEnabled(Boolean.TRUE);
+        user.setRole("ROLE_USER");
+        service.create(user);
         return "home";
     }
 }

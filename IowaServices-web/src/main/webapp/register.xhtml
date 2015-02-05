@@ -20,28 +20,28 @@
                                 
                             <!-- Id's must not be changed to support spring security check -->
                             <h:panelGrid columns="2" class="tblform">
-                                <h:outputLabel for="j_username" value="User: * " />  
-                                <h:inputText id="j_username" required="true" label="username" class="form-control" value="#{userController.users.username}"/>  
+                                <h:outputLabel for="username" value="User: * " />  
+                                <h:inputText id="username" label="username" class="form-control" value="#{userController.user.username}"/>  
                               
-                                <h:outputLabel for="j_firstName" value="First Name: * " />  
-                                <h:inputText id="j_firstName" required="true" label="firstName" class="form-control"/>  
+                                <h:outputLabel for="firstName" value="First Name: * " />  
+                                <h:inputText id="firstName" label="firstName" class="form-control"/>  
                               
-                                <h:outputLabel for="j_lastName" value="Last Name: * " />  
-                                <h:inputText id="j_lastName" required="true" label="lastName" class="form-control"/>  
+                                <h:outputLabel for="lastName" value="Last Name: * " />  
+                                <h:inputText id="lastName" label="lastName" class="form-control"/>  
                               
-                                <h:outputLabel for="j_email" value="Email: * " />  
-                                <h:inputText id="j_email" required="true" label="email" class="form-control"/>  
+                                <h:outputLabel for="email" value="Email: * " />  
+                                <h:inputText id="email" label="email" class="form-control"/>  
                               
-                                <h:outputLabel for="j_address" value="Address: * " />  
-                                <h:inputText id="j_address" required="true" label="email" class="form-control"/>  
+                                <h:outputLabel for="address" value="Address: * " />  
+                                <h:inputText id="address" label="email" class="form-control"/>  
                               
-                                <h:outputLabel for="j_password" value="Password: * "  />  
-                                <h:inputSecret id="j_password" label="password" required="true" class="form-control"/>  
+                                <h:outputLabel for="password" value="Password: * "  />  
+                                <h:inputSecret id="password" label="password" class="form-control" value="#{userController.user.password}"/>  
                                  
-                                <h:outputLabel for="j_confPassword" value="Confirm Password: * "  />  
-                                <h:inputSecret id="j_confPassword" label="confPassword" required="true" class="form-control"/>  
+                                <h:outputLabel for="confPassword" value="Confirm Password: * "  />  
+                                <h:inputSecret id="confPassword" label="confPassword" class="form-control"/>  
                                  
-                                <h:commandButton action="#{userController.register()}" type="submit" id="register" value="Register" class="btn-primary btn"/>
+                                <h:commandButton action="#{userController.register}" type="submit" id="register" value="Register" class="btn-primary btn"/>
                             </h:panelGrid>
                         </h:form>
                     </section>
