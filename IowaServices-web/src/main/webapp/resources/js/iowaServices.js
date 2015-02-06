@@ -9,8 +9,7 @@ function toggle(){
     
     var user_types = document.getElementsByName('userType');
     var user_type;
-    alert("jher");
-    
+     
     for(var i = 0; i< user_types.length; i++){
         if(user_types[i].checked){
             user_type = user_types[i].value;
@@ -20,10 +19,10 @@ function toggle(){
     
     if(user_type === 'serviceProvider'){
         
-        document.getElementById('userSkill').style.display  = 'block';
+        document.getElementById('selUserSkills').style.display  = 'block';
     }else{
         
-        document.getElementById('userSkill').style.display  = 'none';
+        document.getElementById('selUserSkills').style.display  = 'none';
     }
     
     
