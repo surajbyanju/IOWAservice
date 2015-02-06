@@ -11,6 +11,7 @@ import com.bigbang.iowaservices.boundary.UsersFacade;
 import com.bigbang.iowaservices.boundary.UsersFacadeLocal;
 import com.bigbang.iowaservices.entities.Address;
 import com.bigbang.iowaservices.entities.Users;
+import com.bigbang.iowaservices.services.EmailService;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -28,6 +29,8 @@ public class UserController {
    
     @EJB
     UsersFacadeLocal service;
+    @EJB
+    EmailService emailService;
     private Users user;
     
     /**
@@ -61,6 +64,12 @@ public class UserController {
         user.setEnabled(Boolean.TRUE);
         user.setRole("ROLE_ADMIN");
         service.create(user);
+        
+ 
+        String messageLink="http://localhost:8080/IowaServices-web/validateUser?userId="+user.getId();
+            emailService.sendEmailAfterRegister(user.getUsername(),messageLink);
+        
+        
         return "home";
     }
 }
