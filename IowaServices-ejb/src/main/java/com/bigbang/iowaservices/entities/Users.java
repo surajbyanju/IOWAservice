@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.bigbang.iowaservices.entities;
 
 import java.io.Serializable;
@@ -29,59 +29,71 @@ public class Users implements Serializable {
     private Boolean enabled;
     @OneToOne(cascade = CascadeType.ALL)
     private UserInformation userInformation;
-
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Skill skill;
+    
     public Users() {
         userInformation = new UserInformation();
+        skill = new Skill();
     }
-
     
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public String getUsername() {
         return username;
     }
-
+    
     public void setUsername(String username) {
         this.username = username;
     }
-
+    
     public String getPassword() {
         return password;
     }
-
+    
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
     public String getRole() {
         return role;
     }
-
+    
     public void setRole(String role) {
         this.role = role;
     }
-
+    
     public Boolean getEnabled() {
         return enabled;
     }
-
+    
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
+    
     public UserInformation getUserInformation() {
         return userInformation;
     }
-
+    
     public void setUserInformation(UserInformation userInformation) {
         this.userInformation = userInformation;
     }
+    
+    public Skill getSkill() {
+        return skill;
+    }
+    
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
+    
     
     @Override
     public int hashCode() {
@@ -89,7 +101,7 @@ public class Users implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -102,7 +114,7 @@ public class Users implements Serializable {
         }
         return true;
     }
-
+    
     @Override
     public String toString() {
         return "com.bigbang.iowaservices.entities.Users[ id=" + id + " ]";
