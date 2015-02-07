@@ -60,7 +60,7 @@
                                     <f:selectItem itemValue="customer" itemLabel="Customer" id="cust" />                                        
                                 </h:selectOneRadio>
                                 <div id="userSkill"> 
-                                    <h:selectManyListbox value="#{userController.user.skills}" id="selUserSkills">
+                                    <h:selectManyListbox value="#{userController.user.skills}" id="selUserSkills" style="display: none;">
                                         <f:selectItems value="#{userController.skillsValue}" />
                                         </h:selectManyListbox>
                                 </div>
@@ -76,10 +76,23 @@
 
     </h:body>
 
-    <script>
-        $(document).ready(function () {
-            document.getElementById('selUserSkills').style.display = 'none';
-        });
-    </script>
+          
+        <!--<ui:define name="Javascript">-->
+            <f:verbatim>
+            <script>
+        
+                function toggle(){
+                    alert("jere");
+                }
+                //         <![CDATA[
+                $(document).ready(function () {
+                    alert("jere");
+                    document.getElementById('selUserSkills').style.display = 'none';
+                });
+                //        ]]>
+        
+            </script>
+                </f:verbatim>
+        <!--</ui:define>-->
 
 </html>
