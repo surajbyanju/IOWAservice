@@ -3,83 +3,84 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>IOWA SERVICE</title>
-        
+
     </h:head>     
     <h:body>     
         <ui:composition template ="template/template.xhtml"> 
             <ui:define name="content">
                 Register page<br/><br/>
-                    
+
                 <div class="login col-lg-4 col-md-offset-4 col-md-4 col-lg-offset-4">                    
                     <section class="tbl-holder">
                         <h:form id="registeForm" prependId="false">
                             <!-- Messages must be global here, to show bad credentials -->
                             <h:messages globalOnly="true"/>
-                                
+
                             <!-- Id's must not be changed to support spring security check -->
                             <h:panelGrid columns="2" class="tblform">
-                                
+
                                 <h:outputLabel for="firstName" value="First Name: * " />  
                                 <h:inputText id="firstName" label="firstName" class="form-control" value="#{userController.user.userInformation.firstName}"/>  
-                                    
+
                                 <h:outputLabel for="lastName" value="Last Name: * " />  
                                 <h:inputText id="lastName" label="lastName" class="form-control" value="#{userController.user.userInformation.lastName}"/>  
-                                    
+
                                 <h:outputLabel for="email" value="Email: * " />  
                                 <h:inputText id="email" label="email" class="form-control" value="#{userController.user.username}"/>  
-                                    
+
                                 <h:outputLabel for="password" value="Password: * "  />  
                                 <h:inputSecret id="password" label="password" class="form-control" value="#{userController.user.password}"/>  
-                                    
+
                                 <h:outputLabel for="confPassword" value="Confirm Password: * "  />  
                                 <h:inputSecret id="confPassword" label="confPassword" class="form-control"/> 
-                                    
+
                                 <h:outputLabel for="phoneNo" value="Contact number: * "  />  
                                 <h:inputText id="phoneNo" label="phoneNo" class="form-control" value="#{userController.user.userInformation.phoneNo}"/>                                                                                           
-                                    
+
                                 <h:outputLabel for="address" value="Address:" />  
                                 <h:outputLabel for="address" value="" /> 
-                                    
+
                                 <h:outputLabel for="street" value="Street: " />  
                                 <h:inputText id="street" label="street" class="form-control" value="#{userController.user.userInformation.address.street}"/>  
-                                    
+
                                 <h:outputLabel for="city" value="City: " />  
                                 <h:inputText id="city" label="city " class="form-control" value="#{userController.user.userInformation.address.city}"/> 
-                                    
+
                                 <h:outputLabel for="state " value="State:" />  
                                 <h:selectOneMenu value="#{userController.user.userInformation.address.state}">
                                     <f:selectItems value="#{userController.user.userInformation.address.stateValue}" />
                                 </h:selectOneMenu>
-                                    
+
                                 <h:outputLabel for="userType" value="User Type: "></h:outputLabel>
                                 <h:selectOneRadio onclick="toggle();" id="userType">
                                     <f:selectItem itemValue="serviceProvider" itemLabel="Service Provider" id="sp"/>
                                     <f:selectItem itemValue="customer" itemLabel="Customer" id="cust" />                                        
                                 </h:selectOneRadio>
-                                <div id="userSkill">                                    
-                                    <h:selectManyListbox value="#{userController.user.skill.skill}" id="selUserSkills" style="display:none;">
-                                        <f:selectItems value="#{userController.user.skill.skillValue}" />
-                                    </h:selectManyListbox>
+                                <div id="userSkill"> 
+                                    <h:selectManyListbox value="#{userController.user.skills}" id="selUserSkills">
+                                        <f:selectItems value="#{userController.skillsValue}" />
+                                        </h:selectManyListbox>
                                 </div>
-                                    
+
                                 <h:commandButton action="#{userController.register}" type="submit" id="register" value="Register" class="btn-primary btn"/>
                             </h:panelGrid>
                         </h:form>
                     </section>
                 </div>               
-                    
+
             </ui:define>
         </ui:composition>
-        
+
     </h:body>
-        
+
     <script>
-        $(document).ready(function(){
-            document.getElementById('selUserSkills').style.display  = 'none';
+        $(document).ready(function () {
+            document.getElementById('selUserSkills').style.display = 'none';
         });
     </script>
-    
+
 </html>

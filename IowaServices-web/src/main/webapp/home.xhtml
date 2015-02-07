@@ -15,7 +15,11 @@
                 
                 welcome to home page <br></br>
                     
-                <h:link value="Login" outcome="main" /> | <h:link value="Register" outcome="register"/>
+                <h:link value="Login" outcome="main" /> | 
+                <h:form>
+                    <h:commandButton action="#{userController.registerPage}" value="Register"/>
+                </h:form>
+               
                 <br></br>
                 <h:outputLabel value ="services offered"/>
                 <br></br>            
