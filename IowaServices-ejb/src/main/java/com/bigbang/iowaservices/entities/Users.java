@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -23,6 +24,7 @@ import javax.persistence.OneToOne;
  * @author dell
  */
 @Entity
+@NamedQuery(name = "findUsersByUsername", query = "SELECT u FROM Users u where u.username = :username")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Users implements Serializable {
 

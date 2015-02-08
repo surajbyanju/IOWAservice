@@ -30,4 +30,9 @@ public interface UsersFacadeLocal {
 
     int count();
     
+    public Users getUserInfo(String email);
+    
+    
+    
+    
 }

@@ -8,7 +8,10 @@ package com.bigbang.iowaservices.boundary;
 import com.bigbang.iowaservices.entities.Users;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.xml.registry.infomodel.User;
 
 /**
  *
@@ -16,6 +19,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLocal {
+
     @PersistenceContext(unitName = "IOWA_SERVICE")
     private EntityManager em;
 
@@ -27,5 +31,15 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
     public UsersFacade() {
         super(Users.class);
     }
-    
+
+    @Override
+    public Users getUserInfo(String email) {
+        try {
+            return (Users) em.createNamedQuery("findUsersByUsername").setParameter("username", email).getSingleResult();
+
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
 }
