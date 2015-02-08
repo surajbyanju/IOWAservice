@@ -86,7 +86,7 @@ public class UserController {
         service.create(spUser2);
 
         String messageLink = "http://localhost:8080/IowaServices-web/validateUser?userId=" + user.getId();
-        emailService.sendEmailAfterRegister(user.getUsername(), messageLink);
+        emailService.sendEmailAfterRegister(spUser2.getUsername(), messageLink);
         return "/home";
     }
 

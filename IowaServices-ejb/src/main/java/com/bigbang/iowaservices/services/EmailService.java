@@ -43,8 +43,7 @@ public class EmailService {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(toEmail));
+            message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(toEmail));
             message.setSubject("Verify Iowa service account ");
             message.setText("Dear user,"
                     + "\n\n Thanks for joining us !"
