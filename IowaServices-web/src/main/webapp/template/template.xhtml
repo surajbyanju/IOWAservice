@@ -5,11 +5,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>IOWA Services</title>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
         <h:outputStylesheet name="http://fonts.googleapis.com/css?family=Lobster" library="css" />
         <h:outputStylesheet name="bootstrap.css" library="css" />
         <h:outputStylesheet name="style.css" library="css" />
-
     </h:head>
     <h:body>  
         <div class="page_wrap">
@@ -23,6 +22,8 @@
         <ui:insert name="footer" >
             <ui:include src="/template/footer.xhtml" />
         </ui:insert>
+        <h:outputScript name="jquery.js" library="js" />
+        <h:outputScript name="scripts.js" library="js" />
     </h:body>
 </html>
 

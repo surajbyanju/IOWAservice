@@ -73,7 +73,7 @@ public class UserController {
 
         System.out.println("here+++ " + skillFacadeLocal.findAll());
         for (Skill skill : skillFacadeLocal.findAll()) {
-            skillsValue.put(skill.getCode(), skill.getName());
+            skillsValue.put(skill.getName(), skill.getCode());
         }
         return "register";
     }
