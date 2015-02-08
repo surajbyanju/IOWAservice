@@ -5,41 +5,40 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">  
     <body>
         <ui:composition>
-            <h:form>
-                <!-- navigation panel -->
-                <header class="header">
-                    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                        <div class="container-fluid">
-                            <div class="container">
-                                <!-- Brand and toggle get grouped for better mobile display -->
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                    <a class="navbar-brand" href="#">IOWA Services</a>
-                                </div>
-                                    
-                                <div class="collapse navbar-collapse" id="navbar-collapse-main">
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <ui:fragment rendered="#{request.userPrincipal != null}">
-                                            <li><h:commandLink value="Profile" action="#{userController.userInfo()}"></h:commandLink></li>
-                                            <li><h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink></li>
-                                        </ui:fragment>
-                                        <li><h:link value="Home" outcome= "home"/></li>
-                                        <li class="onepage"><a  href="#about">About</a></li>
-                                        <li  class="onepage"><a href="#services">Services</a></li>
-                                        <li ><h:link value="Main" outcome="main" /></li>
-                                        <li><a href="#google_map">Contact</a></li>
-                                    </ul>
-                                </div><!-- /.navbar-collapse -->
-                            </div>
-                        </div><!-- /.container-fluid -->
-                    </nav>
-                </header>
-            </h:form>
+
+            <!-- navigation panel -->
+            <header class="header">
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container-fluid">
+                        <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">IOWA Services</a>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="navbar-collapse-main">
+                            <ul class="nav navbar-nav navbar-right">
+                                <ui:fragment rendered="#{request.userPrincipal != null}">
+                                    <li ><h:link value="Profile" outcome="profile"/></li>
+                                    <li><h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink></li>
+                                </ui:fragment>
+                                <li><h:link value="Home" outcome= "/home"/></li>
+                                <li class="onepage"><a  href="#about">About</a></li>
+                                <li  class="onepage"><a href="#services">Services</a></li>
+                                <li ><h:link value="Main" outcome="/main" /></li>
+                                <li><a href="#google_map">Contact</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </header>
         </ui:composition>
     </body>
 </html>

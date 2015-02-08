@@ -13,12 +13,14 @@
 
             <ui:define name="content">
 
-
-                <div>
-                    <h:link value="Login" outcome="main" /> | 
-                    <h:link value="Register" outcome="register"/>
+                <div class="container-fluid" >
+                    <div class="container" >
+                        <div class="row login_options pull-right">
+                            <h:link value="Login" outcome="main" /> | 
+                            <h:link value="Register" outcome="register"/>
+                        </div>
+                    </div> 
                 </div>
-
                 <!-- section - Services -->
                 <section id="services" class="services pad-section">
                     <div class="container">
@@ -29,7 +31,8 @@
                                 <div class="circle pink-bg">
                                     <div class="inner-circle">
                                         <h4>Electrician</h4>
-                                        <h:link value ="Repair any electric appliances" outcome="main" />
+
+                                        <h:link value ="Do you have short wires?" outcome="main" />
                                     </div>
                                 </div>
                             </div>
@@ -38,7 +41,8 @@
                                 <div class=" circle green-bg">
                                     <div class="inner-circle">
                                         <h4>Plumber</h4>
-                                        <h:link value ="Get best plumbers in the town" outcome="main" /> 
+
+                                        <h:link value ="Want more than knives and forks?" outcome="main" /> 
                                     </div>
                                 </div>
                             </div>
@@ -46,15 +50,16 @@
                                 <div class="circle blue-bg">
                                     <div class="inner-circle">
                                         <h4>Painter</h4>
-                                        <h:link value="Paint your world" outcome="main" />
+                                        <h:link value="Want to paint your dreams? " outcome="main" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3 col-xs-6">
                                 <div class="circle yellow-bg">
                                     <div class="inner-circle">
-                                        <h4>Carpernter</h4>
-                                        <h:link value="Buy new or repair furniture" outcome="main" />
+
+                                        <h4>Carpenter</h4>
+                                        <h:link value="Need a good hammer to bang your head? " outcome="main" />
                                     </div>
                                 </div>
                             </div>
@@ -69,9 +74,11 @@
                         <hr />
                         <div class="row ">
                             <div class="col-xs-12">
-                                <p><strong>Iowa Services</strong> is a service based search engine company.</p>
-                                <p>You can search for a service providers and hire them for you day to day works.</p>
+                                <p><strong>Iowa Services</strong> is a service based search engine company. You can search for a service providers and hire them for you day to day works.</p>
                                 <p style="font-size: 45px;font-family: fantasy;color: darkcyan;">Search -- Look -- Hire -- Get Things Done</p>
+
+                                <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+
                             </div>
                         </div>
                     </div>
