@@ -6,21 +6,44 @@
 package com.bigbang.iowaservices.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Rejina
  */
 @Entity
-public class ServiceProvider implements Serializable {
+public class ServiceProvider extends Users implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToMany
+    private List<Skill> skills;
+
+    public ServiceProvider() {
+        skills = new ArrayList<>();
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
+    }
+
+    public void addSkill(Skill e) {
+        skills.add(e);
+    }
 
     public Long getId() {
         return id;
@@ -54,5 +77,5 @@ public class ServiceProvider implements Serializable {
     public String toString() {
         return "com.bigbang.iowaservices.entities.ServiceProvider[ id=" + id + " ]";
     }
-    
+
 }

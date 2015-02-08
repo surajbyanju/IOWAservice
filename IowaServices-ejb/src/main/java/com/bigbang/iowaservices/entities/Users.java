@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -21,6 +23,7 @@ import javax.persistence.OneToOne;
  * @author dell
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,15 +34,12 @@ public class Users implements Serializable {
     private String password;
     private String role;
     private Boolean enabled;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
     private UserInformation userInformation;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Skill> skills;
-
+  
     public Users() {
         userInformation = new UserInformation();
-        skills = new ArrayList<>();
+        
     }
 
     public Long getId() {
@@ -90,15 +90,7 @@ public class Users implements Serializable {
         this.userInformation = userInformation;
     }
 
-    public List<Skill> getSkills() {
-        return skills;
-    }
 
-    public void setSkills(List<Skill> skills) {
-        this.skills = skills;
-    }
-
-    
     @Override
     public int hashCode() {
         int hash = 0;

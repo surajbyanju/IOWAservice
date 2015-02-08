@@ -27,5 +27,10 @@ public class SkillFacade extends AbstractFacade<Skill> implements SkillFacadeLoc
     public SkillFacade() {
         super(Skill.class);
     }
+
+    @Override
+    public Skill findByCode(String code) {
+        return (Skill)em.createNamedQuery("findSkillByCode").setParameter("code", code).getSingleResult();
+    }
     
 }
