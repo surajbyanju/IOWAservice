@@ -97,7 +97,7 @@ public class UserController {
         return "main";
     }
     
-    public String getUserInfo() {
+    public String userInfo() {
         user = service.getUserInfo("regina_shakya@hotmail.com");
         return "profile";
     }
