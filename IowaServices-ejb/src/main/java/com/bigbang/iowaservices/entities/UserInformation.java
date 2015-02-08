@@ -30,8 +30,8 @@ public class UserInformation implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    private Users user;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Users user;
     
     public UserInformation() {
         address = new Address();
@@ -77,13 +77,13 @@ public class UserInformation implements Serializable {
         this.phoneNo = phoneNo;
     }
 
-    public Users getUser() {
-        return user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
-    }
+//    public Users getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(Users user) {
+//        this.user = user;
+//    }
 
     
     @Override

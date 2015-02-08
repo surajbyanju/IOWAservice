@@ -41,6 +41,7 @@ public class UserController {
     private Users spUser;
     private List<Skill> skillsValue;
     private List<String> selectedSkills;
+    private final static String messageLink = "http://localhost:8080/IowaServices-web/validateUser.jsf?userId=";
 
     /**
      * Creates a new instance of UserController
@@ -65,36 +66,38 @@ public class UserController {
     }
 
     public String register() {
-        user.setEnabled(Boolean.TRUE);
-        user.setRole("ROLE_ADMIN");
+        user.setEnabled(Boolean.FALSE);
+        user.setRole("ROLE_USER");
         service.create(user);
 
-        String messageLink = "http://localhost:8080/IowaServices-web/validateUser?userId=" + user.getId();
-        emailService.sendEmailAfterRegister(user.getUsername(), messageLink);
+        String mLink = messageLink + user.getId();
+        emailService.sendEmailAfterRegister(user.getUsername(), mLink);
         return "home";
     }
 
     public String registerSP() {
         List<Skill> skillList = new ArrayList<>();
         ServiceProvider spUser2 = (ServiceProvider) spUser;
-        spUser2.setEnabled(Boolean.TRUE);
-        spUser2.setRole("ROLE_ADMIN");
+        spUser2.setEnabled(Boolean.FALSE);
+        spUser2.setRole("ROLE_SP");
         for (String selectedSkill : selectedSkills) {
             skillList.add(skillFacadeLocal.findByCode(selectedSkill));
         }
         spUser2.setSkills(skillList);
         service.create(spUser2);
-
-        String messageLink = "http://localhost:8080/IowaServices-web/validateUser?userId=" + user.getId();
-        emailService.sendEmailAfterRegister(spUser2.getUsername(), messageLink);
+        String mLink = messageLink + spUser2.getId();
+        emailService.sendEmailAfterRegister(spUser2.getUsername(), mLink);
         return "/home";
     }
 
     public String validateUser() {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String value = request.getParameter("userId");
-
-        return "main";
+        Long userId = Long.parseLong(value);
+        Users user = service.find(userId);
+        user.setEnabled(Boolean.TRUE);
+        service.edit(user);
+        return "login";
     }
     
     public String userInfo() {
