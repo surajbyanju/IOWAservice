@@ -36,7 +36,7 @@ public class Users implements Serializable {
     private String password;
     private String role;
     private Boolean enabled;
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL)
     private UserInformation userInformation;
   
     public Users() {
