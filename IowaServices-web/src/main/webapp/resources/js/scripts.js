@@ -30,7 +30,7 @@ function toggle() {
 jQuery(document).ready(function ($) {
 
 //scroll to specific section when clicked
-    $('.navbar-nav > li ').on('click', 'a', function (e) {
+    $('.navbar-nav > li.onepage ').on('click', 'a', function (e) {
         e.preventDefault();
         var $this = $(this),
             $href = $this.attr('href'),

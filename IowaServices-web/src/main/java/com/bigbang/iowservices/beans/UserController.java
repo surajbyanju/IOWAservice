@@ -96,6 +96,24 @@ public class UserController {
 
         return "main";
     }
+    
+    public String getUserInfo() {
+        user = service.getUserInfo("regina_shakya@hotmail.com");
+        return "profile";
+    }
+     
+     public String editUserInfo(){
+         user = service.getUserInfo("regina_shakya@hotmail.com");
+         return "editProfile";
+     }
+     
+     public String updateUserInfo(){
+         return "";
+     }
+     
+     public String changePassword(){
+         return "";
+     }
 
     public UsersFacadeLocal getService() {
         return service;
