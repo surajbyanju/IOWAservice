@@ -24,10 +24,7 @@
 
                         <div class="collapse navbar-collapse" id="navbar-collapse-main">
                             <ul class="nav navbar-nav navbar-right">
-                                <ui:fragment rendered="#{request.userPrincipal != null}">
-                                    <li ><h:link value="Profile" outcome="profile"/></li>
-                                    <li><h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink></li>
-                                </ui:fragment>
+                                
                                 <li><h:link value="Home" outcome= "/home"/></li>
                                 <li class="onepage"><a  href="#about">About</a></li>
                                 <li  class="onepage"><a href="#services">Services</a></li>
