@@ -32,6 +32,11 @@ public class Skill implements Serializable {
     private String code;
     private String description;
 
+    public Skill() {
+    }
+    
+    
+
     public Long getId() {
         return id;
     }
