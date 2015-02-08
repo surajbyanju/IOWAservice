@@ -5,19 +5,21 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>IOWA Services</title>
-        
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
+        <h:outputStylesheet name="http://fonts.googleapis.com/css?family=Lobster" library="css" />
         <h:outputStylesheet name="bootstrap.css" library="css" />
         <h:outputStylesheet name="style.css" library="css" />
-        
+
     </h:head>
-    <h:body>        
-        <ui:insert name ="header">
-            <ui:include src ="/template/header.xhtml"/>
-        </ui:insert>
-        <ui:insert name="content" >
-            <ui:include src="/template/content.xhtml" />
-        </ui:insert>
-        
+    <h:body>  
+        <div class="page_wrap">
+            <ui:insert name ="header">
+                <ui:include src ="/template/header.xhtml"/>
+            </ui:insert>
+            <ui:insert name="content" >
+                <ui:include src="/template/content.xhtml" />
+            </ui:insert>
+        </div>
         <ui:insert name="footer" >
             <ui:include src="/template/footer.xhtml" />
         </ui:insert>

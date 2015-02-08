@@ -7,36 +7,78 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        
+
         <ui:composition template="template/template.xhtml">
-           
-            
+
+
             <ui:define name="content">
-                
-                welcome to home page <br></br>
-                    
-                <h:link value="Login" outcome="main" /> | 
-                <h:form>
-                    <h:commandButton action="#{userController.registerPage}" value="Register"/>
-                </h:form>
-               
-                <br></br>
-                <h:outputLabel value ="services offered"/>
-                <br></br>            
-                <h:outputLabel value="Carpentry" />   
-                <br></br>
-                <h:outputLabel value="Electrician" />
-                <br></br>
-                <h:outputLabel value="Plumbing" />
-                <br></br>
-                <h:outputLabel value="Painter" />
-                <br></br>
-                <h:outputLabel value="Gardener"/>
-                <br></br>
-                <h:outputLabel value="Cleaner"/>
+
+
+                <div style="display:none;">
+                    <h:link value="Login" outcome="main" /> | 
+                    <h:link value="Register" outcome="register"/>
+                </div>
+
+                <!-- section - Services -->
+                <section id="services" class="services pad-section">
+                    <div class="container">
+                        <h2 class="text-center">Our Services</h2> 
+                        <hr />
+                        <div class="row text-center">
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="circle pink-bg">
+                                    <div class="inner-circle">
+                                        <h4>Electrician</h4>
+                                        <h:link value ="Lorem ipsum dolor sit amet" outcome="main" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 col-xs-6">
+                                <div class=" circle green-bg">
+                                    <div class="inner-circle">
+                                        <h4>Plumber</h4>
+                                        <h:link value ="consectetur adipiscing elit" outcome="main" /> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="circle blue-bg">
+                                    <div class="inner-circle">
+                                        <h4>Painter</h4>
+                                        <h:link value="Donec in sem cras amet" outcome="main" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 col-xs-6">
+                                <div class="circle yellow-bg">
+                                    <div class="inner-circle">
+                                        <h4>Carpernter</h4>
+                                        <h:link value="Adipiscing elit sem cras amet" outcome="main" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- /third section -->
+                <!-- section - about us -->
+                <section id="about" class="services pad-section">
+                    <div class="container">
+                        <h2 class="text-center">About Us</h2> 
+                        <hr />
+                        <div class="row ">
+                            <div class="col-xs-12">
+                                <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+                                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacus tellus, suscipit eu rutrum at, tincidunt a libero. Quisque faucibus ornare quam, a iaculis risus commodo quis. Proin vitae lorem consectetur, interdum eros non, maximus sem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi nec sagittis orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce quis vehicula turpis, nec euismod nisl. Nunc laoreet volutpat risus.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- /third section -->
             </ui:define>
         </ui:composition>
-        
+
     </h:body>
 </html>
-

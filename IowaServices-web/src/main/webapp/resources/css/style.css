@@ -7,18 +7,142 @@ and open the template in the editor.
     Created on : Jan 30, 2015, 9:22:12 PM
     Author     : sajana
 */
-
+*{margin:0; padding:0;}
+html, body{ height:100%;}
 body{font-family:arial; margin:0; padding:0}
-header{background:#286090; padding:10px; margin:0}
-h1{color:#fff;}
+.header,
+.footer{ 
+    height:50px;
+    padding:10px;
+    margin:0
+}
+.pad-section{
+    padding-top: 40px;
+}
+hr{
+    margin:40px 0 60px;
+}
+.page_wrap{
+    min-height: 100%;
+    margin-bottom: -50px;
+    padding-bottom: 50px;
+}
 section.tbl-holder{background:#f5f5f5; border:1px solid #ccc; border-radius:5px; padding:10px; overflow:hidden; margin:20px auto;}
 table.tblform {width:100%}
 table.tblform tr td{padding:5px}
-
-.footer_color{
-    background-color: #000;
+.footer, .footer a,
+.header a.navbar-brand,
+.header .navbar-nav > li > a{
+    font-family: 'Lobster', cursive;
+    margin: 0;
+}
+.circle {
+    color: white;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.15;
+    width: 240px;
+    height: 240px;
+    border-radius: 200px;
+    text-align: center;
+    position:relative;
+}
+.inner-circle{
+    height: 160px;
+    width: 160px;
+    top:40px;
+    left:40px;
+    position: absolute;
+    border-radius: 200px;
+    transition:all ease 0.5s;
+}
+.circle:hover .inner-circle{
+    height: 232px;
+    width:232px;
+    top:4px;
+    left:4px;
+}
+.circle:hover .inner-circle h4,
+.inner-circle a{
+    opacity:0;
+    transition: all ease 0.5s;
+}
+.circle .inner-circle h4,
+.circle:hover .inner-circle a{
+    opacity:1;
 }
 
-.content{
-    height: 500px;
+.inner-circle a,
+.inner-circle h4{
+    display:block;
+    position:absolute;
+    left:20%;
+    top:40%;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #999;
+}
+.circle .inner-circle h4,
+.circle .inner-circle a{
+    width:120px;
+    height:60px;
+    left: 20px;
+    top:60px;
+    position: absolute;
+    transition:all ease 0.5s;
+    
+}
+.circle:hover .inner-circle h4,
+.circle:hover .inner-circle a{
+    left: 60px;
+    top:90px;
+}
+
+/* themes and colors */
+.header .navbar-default {
+    background-color:#286090;
+    border-color: #e7e7e7;
+}
+.footer,
+.header .navbar-default {
+    background-color:#286090;
+    border-color: #286090;
+}
+h1,
+.inner-circle a,
+.footer, .footer a,
+.header a.navbar-brand,
+.header .navbar-nav > li > a{
+    color:#fff;
+}
+.header .navbar-nav > li.current-menu-item a,
+.header a.navbar-brand:hover,
+.header .navbar-nav > li > a:hover{
+    color:#ccc;
+}
+.header .navbar-nav > li.current-menu-item a{
+    color:#e21350;
+}
+.yellow-bg {
+    background: rgba(255,210,4,0.6);
+}
+.yellow-bg .inner-circle {
+    background: #ffd204;
+}
+.pink-bg {
+    background: rgba(266,19,80,0.6);
+}
+.pink-bg .inner-circle {
+    background: #e21350;
+}
+.blue-bg {
+    background: rgba(0,182,222,0.6);
+}
+.blue-bg .inner-circle {
+    background: #00b6de;
+}
+.green-bg {
+    background: rgba(11, 190, 129, 0.6);
+}
+.green-bg .inner-circle {
+    background: #099a50;
 }
