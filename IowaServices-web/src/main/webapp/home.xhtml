@@ -13,20 +13,7 @@
 
             <ui:define name="content">
 
-                <div class="container-fluid" >
-                    <div class="container" >
-                        <div class="row login_options pull-right">
-                            <ui:fragment rendered="#{request.userPrincipal != null}">
-                                    <h:link value="Profile" outcome="profile"/> |
-                                    <h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
-                            </ui:fragment>
-                            <ui:fragment rendered="#{request.userPrincipal == null}">
-                            <h:link value="Login" outcome="main" /> | 
-                            <h:link value="Register" outcome="register"/>
-                            </ui:fragment>
-                        </div>
-                    </div> 
-                </div>
+                
                 <!-- section - Services -->
                 <section id="services" class="services pad-section">
                     <div class="container">
