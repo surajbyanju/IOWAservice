@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Add Skills</title>
+    </h:head>
+    <h:body>
+        <ui:composition template ="../template/template.xhtml">
+            <ui:define name="content">
+                
+                <section class="tbl-holder col-md-3 col-md-offset-3">
+                    <h:form id="addSkillForm" prependId="false">
+                        <h:outputLabel for="skillCode" value="Skill Code * " />  
+                        <h:inputText id="skillCode" label="skillCode" class="form-control" value="#{adminController.newSkill.code}"/>  
+                        
+                        <h:outputLabel for="skillName" value="Skill Name: * " />  
+                        <h:inputText id="skillName" label="skillName" class="form-control" value="#{adminController.newSkill.name}"/> 
+                        
+                        <h:outputLabel for="skillDesc" value="Description: * " />  
+                        <h:inputText id="skillDesc" label="skillDesc" class="form-control" value="#{adminController.newSkill.description}"/> 
+                        
+                        <h:commandButton id="addSkill" label="Add Skill" value="Add Skill" action="#{adminController.addSkill}"/>
+                    </h:form>
+                </section>
+            </ui:define>
+        </ui:composition>
+        
+    </h:body>
+</html>
+

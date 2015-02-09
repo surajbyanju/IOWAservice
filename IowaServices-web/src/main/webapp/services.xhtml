@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Services</title>
+    </h:head>
+    <h:body>
+        <f:facet name="title"> List of All the Services</f:facet>
+        
+        
+        <ui:composition template ="template/template.xhtml">
+            <ui:define name="content">
+                
+                <section id="services" class="services pad-section">
+                    <div class="container">
+                        <h2 class="text-center">Our Services</h2> 
+                        <hr />
+                        <div class="row text-center">
+                            
+                            <c:forEach var="skill" items="#{adminController.allSkills}" varStatus="status">                              
+                                <div class="col-sm-3 col-xs-6">
+                                  
+                                   <c:if test="#{status.count eq 1}">${skill.name}</c:if> 
+                                   <c:if test="#{status.count eq 2}">${skill.name}</c:if> 
+                                   
+                                <div class="circle green-bg">
+                                    <div class="inner-circle">
+                                         ${status.count} 
+                                        <h4> ${skill.name}</h4>
+                                        <h:link value ="${skill.description}" outcome="main" />
+                                    </div>
+                                </div>
+                            </div>
+                            </c:forEach>
+                            
+                        </div>
+                    </div>
+                </section>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
