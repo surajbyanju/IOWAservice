@@ -2,30 +2,69 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Add Skills</title>
     </h:head>
     <h:body>
         <ui:composition template ="../template/template.xhtml">
             <ui:define name="content">
+                <div class="row">
+                    <section class=" ">
+                        <h3 class="text-center">Add New Skill</h3> 
+                        <hr/>
+                        <div class="col-md-offset-2 col-md-4">
+                            <h:form id="addSkillForm" prependId="false" >
+                                <h:outputLabel for="skillCode" value="Skill Code * " />  
+                                <h:inputText id="skillCode" label="skillCode" class="form-control" value="#{adminController.newSkill.code}"/>  
+                                <br/>
+                                <h:outputLabel for="skillName" value="Skill Name: * "  />  
+                                <h:inputText id="skillName" label="skillName" class="form-control" value="#{adminController.newSkill.name}"/> 
+                                <br/>
+                                <h:outputLabel for="skillDesc" value="Description: * " />  
+                                <h:inputText id="skillDesc" label="skillDesc" class="form-control" value="#{adminController.newSkill.description}"/> 
+                                <br/>
+                                <h:commandButton id="addSkill" label="Add Skill" value="Add Skill" action="#{adminController.addSkill}" class="btn btn-primary"/>
+                            </h:form>
+                        </div>
+                        
+                       
+<!--                            <div class="container">
+                                 <div class="row">                                
+                                <div class="col-md-12">
+                                    <h2 class="text-center">List of All the Services</h2> 
+                                <hr />
+                                    <c:forEach var="skill" items="#{adminController.allSkills}" varStatus="status">                              
+                                        <div class="col-sm-3 col-xs-6">
+                                            
+                                            <c:if test="#{status.count eq 1}">${skill.name}</c:if> 
+                                            <c:if test="#{status.count eq 2}">${skill.name}</c:if> 
+                                            
+                                            <div class="circle green-bg">
+                                                <div class="inner-circle">
+                                                    ${status.count} 
+                                                    <h4> ${skill.name}</h4>
+                                                    <h:link value ="${skill.description}" outcome="main" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                    
+                                </div>
+                            </div>
+                        </div>-->
+                    </section>
+                </div>
                 
-                <section class="tbl-holder col-md-3 col-md-offset-3">
-                    <h:form id="addSkillForm" prependId="false">
-                        <h:outputLabel for="skillCode" value="Skill Code * " />  
-                        <h:inputText id="skillCode" label="skillCode" class="form-control" value="#{adminController.newSkill.code}"/>  
-                        
-                        <h:outputLabel for="skillName" value="Skill Name: * " />  
-                        <h:inputText id="skillName" label="skillName" class="form-control" value="#{adminController.newSkill.name}"/> 
-                        
-                        <h:outputLabel for="skillDesc" value="Description: * " />  
-                        <h:inputText id="skillDesc" label="skillDesc" class="form-control" value="#{adminController.newSkill.description}"/> 
-                        
-                        <h:commandButton id="addSkill" label="Add Skill" value="Add Skill" action="#{adminController.addSkill}"/>
-                    </h:form>
-                </section>
             </ui:define>
+            
+            
+            
+            
         </ui:composition>
+        
         
     </h:body>
 </html>
