@@ -11,44 +11,48 @@
                 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                     <div class="container-fluid">
                         <div class="container">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <h:link class="navbar-brand" value="IOWA Services" outcome="/home" />
-                        </div>
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <h:link class="navbar-brand" value="IOWA Services" outcome="/home" />
+                            </div>
 
-                        <div class="collapse navbar-collapse" id="navbar-collapse-main">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><h:link value="Home" outcome= "/home"/></li>
-                                <li class="onepage"><a  href="#about">About</a></li>
-                                <li  class="onepage"><a href="#services">Services</a></li>
-                                <li ><h:link value="Main" outcome="/main" /></li>
-                                <li><a href="#google_map">Contact</a></li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
+                            <div class="collapse navbar-collapse" id="navbar-collapse-main">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><h:link value="Home" outcome= "/home"/></li>
+                                    <li class="onepage"><a  href="#about">About</a></li>
+                                    <li  class="onepage"><a href="#services">Services</a></li>
+                                    <li ><h:link value="Main" outcome="/main" /></li>
+                                    <li><a href="#google_map">Contact</a></li>
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
                         </div>
                     </div><!-- /.container-fluid -->
                 </nav>
             </header>
             <div class="container-fluid" >
-                    <div class="container" >
-                        <div class="row login_options pull-right">
-                            <ui:fragment rendered="#{request.userPrincipal != null}">
-                                    <h:link value="Profile" outcome="profile"/> |
-                                    <h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
-                            </ui:fragment>
-                            <ui:fragment rendered="#{request.userPrincipal == null}">
+                <div class="container" >
+                    <div class="row login_options pull-right">
+                        <ui:fragment rendered="#{request.userPrincipal != null}">
+                            Welcome <h:outputLabel value="#{loginController.user.userInformation.fullName}"/>
+                            <h:form>
+                                <h:commandLink action="#{userController.userInfo()}" value="Profile"/>
+                                |
+                                <h:outputLink value="#{request.contextPath}/j_spring_security_logout">Logout</h:outputLink>
+                            </h:form>    
+                        </ui:fragment>
+                        <ui:fragment rendered="#{request.userPrincipal == null}">
                             <h:link value="Login" outcome="main" /> | 
                             <h:link value="Register" outcome="register"/>
-                            </ui:fragment>
-                        </div>
-                    </div> 
-                </div>
+                        </ui:fragment>
+                    </div>
+                </div> 
+            </div>
         </ui:composition>
     </body>
 </html>

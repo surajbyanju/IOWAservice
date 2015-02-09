@@ -20,6 +20,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,6 +38,8 @@ public class UserController {
     EmailService emailService;
     @EJB
     SkillFacadeLocal skillFacadeLocal;
+    @ManagedProperty(value = "#{loginController}")
+    private LoginController loginController;
     private Users user;
     private Users spUser;
     private List<Skill> skillsValue;
@@ -101,12 +104,12 @@ public class UserController {
     }
     
     public String userInfo() {
-        user = service.getUserInfo("regina_shakya@hotmail.com");
-        return "profile";
+        user = service.getUserInfo(loginController.getUser().getUsername());
+        return "/profile";
     }
      
      public String editUserInfo(){
-         user = service.getUserInfo("regina_shakya@hotmail.com");
+         user = service.getUserInfo(loginController.getUser().getUsername());
          return "editProfile";
      }
      
@@ -157,5 +160,11 @@ public class UserController {
     public void setSpUser(Users spUser) {
         this.spUser = spUser;
     }
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+    
+    
 
 }

@@ -5,10 +5,14 @@
  */
 package com.bigbang.iowservices.beans;
 
+import com.bigbang.iowaservices.boundary.UsersFacade;
+import com.bigbang.iowaservices.boundary.UsersFacadeLocal;
+import com.bigbang.iowaservices.entities.Users;
 import java.io.IOException;
+import javax.ejb.EJB;
 
 import javax.faces.application.FacesMessage;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -25,6 +29,8 @@ import org.apache.commons.logging.LogFactory;
 
 
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.WebAttributes;
 
 /**
@@ -32,10 +38,13 @@ import org.springframework.security.web.WebAttributes;
  * @author dell
  */
 @Named(value = "loginController")
-@RequestScoped
+@SessionScoped
 @ManagedBean
 public class LoginController implements PhaseListener {
 
+    @EJB
+    UsersFacadeLocal userFacade;
+    private Users user;
      protected final Log logger = LogFactory.getLog(getClass());
     
     /**
@@ -48,7 +57,6 @@ public class LoginController implements PhaseListener {
      * @throws IOException
      */
     public String doLogin() throws ServletException, IOException {
-        System.out.println("here");
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 
         RequestDispatcher dispatcher = ((ServletRequest) context.getRequest())
@@ -58,7 +66,12 @@ public class LoginController implements PhaseListener {
                 (ServletResponse) context.getResponse());
 
         FacesContext.getCurrentInstance().responseComplete();
-
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth!=null){
+            user=userFacade.getUserInfo(auth.getName());
+        }
+       
+        System.out.println("user+++ "+user.getUserInformation().getFirstName());
         return "protected";
     }
 
@@ -83,6 +96,11 @@ public class LoginController implements PhaseListener {
                 "Username or password not valid.", "Username or password not valid"));
         }
     }
+    
+    public LoginController(){
+        user = new Users();
+        userFacade = new UsersFacade();
+    }
 
     /* (non-Javadoc)
      * @see javax.faces.event.PhaseListener#getPhaseId()
@@ -96,6 +114,12 @@ public class LoginController implements PhaseListener {
     public String test(){
         return "login";
     }
+
+    public Users getUser() {
+        return user;
+    }
+    
+    
     
     
 }

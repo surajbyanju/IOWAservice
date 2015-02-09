@@ -84,6 +84,10 @@ public class UserInformation implements Serializable {
 //    public void setUser(Users user) {
 //        this.user = user;
 //    }
+    
+    public String getFullName(){
+        return (firstName.isEmpty()?"":firstName)+" "+(lastName.isEmpty()?"":lastName);
+    }
 
     
     @Override
