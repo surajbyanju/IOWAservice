@@ -30,4 +30,6 @@ public interface ServiceProviderFacadeLocal {
 
     int count();
     
+    List<ServiceProvider> searchServiceProvider(String searchString);
+    
 }
