@@ -90,7 +90,7 @@ table.tblform tr td{padding:5px}
     top:60px;
     position: absolute;
     transition:all ease 0.5s;
-    
+
 }
 .circle:hover .inner-circle h4,
 .circle:hover .inner-circle a{
@@ -99,6 +99,33 @@ table.tblform tr td{padding:5px}
 }
 .login_options{
     padding:15px 15px 0;
+}
+.search-container {
+    padding: 15px 15px;
+}
+.search-container form{
+    background:#fff;
+}
+.search-container form:hover {
+box-shadow: 0 0 2px #000;
+}
+.search-container input[type="text"]{
+    border: none;
+    padding: 4px;
+    width:92%;
+    outline:none;
+}
+.search-container input[type="submit"]{
+    background-image: url('../resources/images/Hjd90nxKeYA.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: -28px -470px;
+    border:none;
+    background-color:transparent;
+    padding: 4px;
+    width: 28px;
+    border-left: 1px solid #ccc;
+    height: 18px;
 }
 /* themes and colors */
 .header .navbar-default {
