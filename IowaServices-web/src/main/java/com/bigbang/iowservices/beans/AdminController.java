@@ -8,6 +8,7 @@ package com.bigbang.iowservices.beans;
 import com.bigbang.iowaservices.boundary.SkillFacade;
 import com.bigbang.iowaservices.boundary.SkillFacadeLocal;
 import com.bigbang.iowaservices.entities.Skill;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,13 +34,21 @@ public class AdminController {
         
     private Skill newSkill;
     private List<Skill> allSkills;
+    
+    private  List<String> classList;
     /**
      * Creates a new instance of AdminController
      */
  
-     @PostConstruct
+    @PostConstruct
     public void initSkills() {
         allSkills = skillFacadeLocal.findAll();
+        
+        classList =  new ArrayList<>();
+        classList.add("circle pink-bg");
+        classList.add("circle blue-bg");
+        classList.add("circle yellow-bg");
+        classList.add("circle green-bg");
     }
     public SkillFacadeLocal getAddNewSkill() {
         return addNewSkill;
@@ -69,6 +78,11 @@ public class AdminController {
     public void setAllSkills(List<Skill> allSkills) {
         this.allSkills = allSkills;
     }
+
+    public List<String> getClassList() {
+        return classList;
+    }
+
     
     public String addSkill(){
         
@@ -80,6 +94,14 @@ public class AdminController {
         
         addNewSkill.findAll();
         return "/home";
+    }
+    
+    public String displaySpOfSkill(){
+        
+//        addNewSkill.findBySkill(code);
+       
+//        addNewSkill.findSpOfSkill();
+        return "/serviceDetails";
     }
     
 }

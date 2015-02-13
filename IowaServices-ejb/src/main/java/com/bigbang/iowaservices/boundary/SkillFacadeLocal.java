@@ -28,6 +28,7 @@ public interface SkillFacadeLocal {
 
     List<Skill> findRange(int[] range);
     
+    
     Skill findByCode(String code);
 
     int count();

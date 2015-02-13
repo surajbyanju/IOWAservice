@@ -44,6 +44,12 @@ public class SearchProvidersController {
         serviceProviders = searchProviderService.searchServiceProviders(searchString);
         return "serviceProviderList";
     }
+    
+      public String spByCode(String code){
+        System.out.println("ser+++ "+code);
+        serviceProviders = searchProviderService.searchServiceProviders(code);
+        return "serviceDetails";
+    }
 
     public String getSearchString() {
         return searchString;

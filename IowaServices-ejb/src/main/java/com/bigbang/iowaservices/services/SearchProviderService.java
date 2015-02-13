@@ -28,4 +28,9 @@ public class SearchProviderService {
     
     }
     
+      public List<ServiceProvider> spByCode(String searchString){
+        return serviceP.searchServiceProvider(searchString);
+    
+    }
+    
 }

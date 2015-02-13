@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
         <f:facet name="title"> List of All the Services</f:facet>
-       
+        
         
         <ui:composition template ="template/template.xhtml">
             <ui:define name="content">
@@ -20,37 +20,27 @@
                         <h2 class="text-center">Our Services</h2> 
                         <hr />
                         <div class="row text-center">
+                            <ui:repeat value="#{searchProvidersController.serviceProviders}" var="service">
+                                <li> 
+                                    <h:outputText value="#{service.userInformation.firstName}" />
+                                    <h:outputText value="#{service.username}" />
+                                    <h:outputText value="#{service}" />
+                                    
+                                </li> 
+                            </ui:repeat>
                             
-                             <c:set var="count" value="0"/>
-                            
-                            <ui:repeat value="#{adminController.allSkills}" var="skill" varStatus="status">
+                            <c:forEach var="skill" items="#{adminController.allSkills}" varStatus="status">                              
                                 <div class="col-sm-3 col-xs-6">
                                     
-                                    #{count}
-                                    
-                                    <div class="#{adminController.classList.get(count)}" >
+                                    <div class="circle green-bg" >
                                         <div class="inner-circle">
+                                            ${status.count} 
                                             <h4> ${skill.name}</h4>
-                                            <h:form>
-                                                <h:commandLink value ="${skill.description}" action="#{searchProvidersController.spByCode(skill.name)}" />
-                                            </h:form>
-                                            <c:choose>
-                                                <c:when test="${count >= 3}">
-                                                    <c:set var="count" value="0"/>
-                                                    #{count}  three
-                                                </c:when>
-                                                <c:otherwise>
-                                                    #{count} before
-                                                    <c:set var="count" value="${count+1}"/>
-                                                    #{count} increase
-                                                </c:otherwise>
-                                            </c:choose>
-                                            
+                                            <h:commandLink value ="${skill.description}" action="#{adminController.displaySpOfSkill(skill.id.toString())}" />
                                         </div>
                                     </div>
                                 </div>
-                                
-                            </ui:repeat>
+                            </c:forEach>
                             
                         </div>
                     </div>

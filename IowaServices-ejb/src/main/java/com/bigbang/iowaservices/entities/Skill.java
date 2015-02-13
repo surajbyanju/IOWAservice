@@ -33,7 +33,7 @@ public class Skill implements Serializable {
     private String name;
     private String code;
     private String description;
-    private static Map<String, Object> classValue;
+ 
     
     public Skill() {
     }
@@ -79,18 +79,8 @@ public class Skill implements Serializable {
         this.description = description;
     }
 
-    static{
-        classValue =  new LinkedHashMap<String, Object>();
-        classValue.put("pink", "circle pink-bg");
-        classValue.put("blue", "circle blue-bg");
-        classValue.put("yellow", "circle yellow-bg");
-        classValue.put("greem", "circle green-bg");
-    }
-
-    public static Map<String, Object> getClassValue() {
-        return classValue;
-    }
-
+   
+ 
     @Override
     public int hashCode() {
         int hash = 0;
