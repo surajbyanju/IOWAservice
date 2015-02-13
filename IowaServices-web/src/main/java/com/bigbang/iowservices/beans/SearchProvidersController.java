@@ -5,6 +5,7 @@
  */
 package com.bigbang.iowservices.beans;
 
+import com.bigbang.iowaservices.boundary.ServiceProviderFacadeLocal;
 import com.bigbang.iowaservices.entities.ServiceProvider;
 import com.bigbang.iowaservices.entities.Users;
 import com.bigbang.iowaservices.services.SearchProviderService;
@@ -25,30 +26,39 @@ public class SearchProvidersController {
     private String searchString;
     @EJB
     SearchProviderService searchProviderService;
+    @EJB
+    ServiceProviderFacadeLocal serviceProviderFacadeLocal;
     private List<ServiceProvider> serviceProviders;
+    private ServiceProvider serviceProvider;
+
     /**
      * Creates a new instance of SearchProvidersController
      */
     public SearchProvidersController() {
         serviceProviders = new ArrayList<>();
     }
-    
-    public List<Users> findAllServiceProviders(){
-        
+
+    public List<Users> findAllServiceProviders() {
+
         return null;
-    
-    } 
-    
-    public String searchServiceProviders(){
-        System.out.println("ser+++ "+searchString);
+
+    }
+
+    public String searchServiceProviders() {
         serviceProviders = searchProviderService.searchServiceProviders(searchString);
         return "serviceProviderList";
     }
-    
-      public String spByCode(String code){
-        System.out.println("ser+++ "+code);
+
+    public String spByCode(String code) {
+        System.out.println("ser+++ " + code);
         serviceProviders = searchProviderService.searchServiceProviders(code);
         return "serviceDetails";
+    }
+
+    public void preRenderView(String providerId) {
+        if (!providerId.isEmpty()) {
+            serviceProvider = serviceProviderFacadeLocal.find(Long.parseLong(providerId));
+        }
     }
 
     public String getSearchString() {
@@ -66,7 +76,13 @@ public class SearchProvidersController {
     public void setServiceProviders(List<ServiceProvider> serviceProviders) {
         this.serviceProviders = serviceProviders;
     }
-    
-    
-    
+
+    public ServiceProvider getServiceProvider() {
+        return serviceProvider;
+    }
+
+    public void setServiceProvider(ServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
+    }
+
 }
