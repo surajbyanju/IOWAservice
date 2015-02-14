@@ -7,11 +7,15 @@ package com.bigbang.iowservices.beans;
 
 import com.bigbang.iowaservices.boundary.ServiceRequestFacade;
 import com.bigbang.iowaservices.boundary.ServiceRequestFacadeLocal;
+import com.bigbang.iowaservices.boundary.UsersFacadeLocal;
+import com.bigbang.iowaservices.entities.ServiceProvider;
 import com.bigbang.iowaservices.entities.ServiceRequest;
+import com.bigbang.iowaservices.entities.Users;
 import com.bigbang.iowaservices.services.EmailService;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedProperty;
 
 /**
  *
@@ -19,40 +23,47 @@ import javax.enterprise.context.Dependent;
  */
 @Named(value = "sPController")
 @Dependent
+
 public class SPController {
 
     /**
      * Creates a new instance of SPController
      */
-//    @EJB
-//    ServiceRequestFacadeLocal service;
-   @EJB
+    @EJB
+    ServiceRequestFacadeLocal service;
+    @EJB
     EmailService emailService;
+
+    @EJB
+    UsersFacadeLocal userService;
     public ServiceRequest sRequest;
-  
+    @ManagedProperty(value = "#{loginController}")
+    private LoginController loginController;
+    private Users user;
+
     public SPController() {
-//        service = new ServiceRequestFacade();
+        service = new ServiceRequestFacade();
         sRequest = new ServiceRequest();
-        
+
     }
- 
+
     /**
      *
-     * @param spId
+     * @param serviceProvider
      * @return
      */
-    public String hireSP(Long spId) {
-        System.out.println("ser+++ " + spId + "sebding service request");
-        sRequest.setAccepted("False");
-        sRequest.setSpId(spId);
-//        serviceProviders = searchProviderService.searchServiceProviders(code);
-//        user.setEnabled(Boolean.FALSE);
-//        user.setRole("ROLE_USER");
-//        service.create(sRequest);
-//
+    public String hireSP(ServiceProvider serviceProvider) {
+        
+        System.out.println("ser+++ " + serviceProvider + "sebding service request");
+        user = userService.getUserInfo(loginController.getUser().getUsername());
+        sRequest.setAccepted(Boolean.FALSE);
+        sRequest.setServiceProvider(serviceProvider);
+        sRequest.setUsers(user);
+        sRequest.setRequestDate(null);
+        service.create(sRequest);
+
         String mLink = "This is the test to sp";
         emailService.sendEmailAfterRegister("sajanamaharjan01@gmail.com", mLink);
         return "home";
-//        return "services";
     }
 }

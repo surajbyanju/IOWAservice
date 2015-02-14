@@ -39,9 +39,12 @@ public class Users implements Serializable {
     private Boolean enabled;
     @OneToOne(cascade = CascadeType.ALL)
     private UserInformation userInformation;
+    @OneToMany
+    private List<ServiceRequest> serviceRequests;
   
     public Users() {
         userInformation = new UserInformation();
+         serviceRequests = new ArrayList<>();
         
     }
 
@@ -91,6 +94,14 @@ public class Users implements Serializable {
 
     public void setUserInformation(UserInformation userInformation) {
         this.userInformation = userInformation;
+    }
+
+    public List<ServiceRequest> getServiceRequests() {
+        return serviceRequests;
+    }
+
+    public void setServiceRequests(List<ServiceRequest> serviceRequests) {
+        this.serviceRequests = serviceRequests;
     }
 
 

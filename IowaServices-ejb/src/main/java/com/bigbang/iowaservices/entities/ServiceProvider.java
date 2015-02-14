@@ -28,9 +28,13 @@ public class ServiceProvider extends Users implements Serializable {
     private Long id;
     @OneToMany
     private List<Skill> skills;
+    
+    @OneToMany
+    private List<ServiceRequest> serviceRequests;
 
     public ServiceProvider() {
         skills = new ArrayList<>();
+        serviceRequests = new ArrayList<>();
     }
 
     public List<Skill> getSkills() {
@@ -59,6 +63,16 @@ public class ServiceProvider extends Users implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
+
+    public List<ServiceRequest> getServiceRequests() {
+        return serviceRequests;
+    }
+
+    public void setServiceRequests(List<ServiceRequest> serviceRequests) {
+        this.serviceRequests = serviceRequests;
+    }
+    
+    
 
     @Override
     public boolean equals(Object object) {

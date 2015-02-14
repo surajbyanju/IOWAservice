@@ -1,15 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.bigbang.iowaservices.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -19,51 +23,67 @@ import javax.persistence.Id;
 public class ServiceRequest implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long spId;
-    private Long custId;
-    private String accepted;
+  
+    private boolean accepted;
+    @Temporal(TemporalType.DATE)
+    private Date requestDate;
+    
+   @ManyToOne
+   private ServiceProvider serviceProvider;
+   @ManyToOne
+   private Users users;
     
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Long getSpId() {
-        return spId;
-    }
-
-    public void setSpId(Long spId) {
-        this.spId = spId;
-    }
-
-    public Long getCustId() {
-        return custId;
-    }
-
-    public void setCustId(Long custId) {
-        this.custId = custId;
-    }
-
-    public String getAccepted() {
+       
+    public boolean isAccepted() {
         return accepted;
     }
-
-    public void setAccepted(String accepted) {
+    
+    public void setAccepted(boolean accepted) {
         this.accepted = accepted;
     }
+    
+    public Date getRequestDate() {
+        return requestDate;
+    }
+    
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
+    }
 
+    public ServiceProvider getServiceProvider() {
+        return serviceProvider;
+    }
+
+    public void setServiceProvider(ServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -76,7 +96,7 @@ public class ServiceRequest implements Serializable {
         }
         return true;
     }
-
+    
     @Override
     public String toString() {
         return "com.bigbang.iowaservices.entities.ServiceRequest[ id=" + id + " ]";

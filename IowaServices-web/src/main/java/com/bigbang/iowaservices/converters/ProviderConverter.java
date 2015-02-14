@@ -33,7 +33,7 @@ public class ProviderConverter implements Converter{
         if (value == null) {
             return null;
         }
-        int id = Integer.parseInt(value);
+        Long id = Long.parseLong(value);
         return facadeLocal.find(id);
     }
 
