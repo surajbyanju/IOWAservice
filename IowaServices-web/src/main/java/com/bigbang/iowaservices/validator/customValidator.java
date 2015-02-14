@@ -53,6 +53,8 @@ public class customValidator implements Validator{
 			throw new ValidatorException(msg);
  
 		}
+                
+                // check if user is already registered with pr
  
 	}
 

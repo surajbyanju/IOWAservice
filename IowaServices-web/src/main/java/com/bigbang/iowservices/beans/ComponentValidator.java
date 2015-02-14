@@ -36,7 +36,7 @@ public class ComponentValidator {
         if(componentValue.isEmpty()){
               throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
         }
-        else if(!componentValue.matches("[A-Z][a-zA-Z]*")){
+        else if(componentValue.matches("[A-Z][a-zA-Z]*")){
               throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
         }
     }
@@ -56,12 +56,12 @@ public class ComponentValidator {
         String id = component.getId(); //component name
         String msg = "invalid" + " " + id;
         
-        String regExp = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"; 
+        
         System.out.print("component name +++++++"   +  id);
         if(componentValue.isEmpty()){
               throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
 
-        }else if(componentValue.matches(regExp)){
+        }else if(componentValue.length() > 10 ){
               throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
             
         }
@@ -74,7 +74,7 @@ public class ComponentValidator {
         String id = component.getId(); //component name
         String msg = "invalid" + " " + id;
         
-        String regExp = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"; 
+        
         System.out.print("component name +++++++"   +  id);
         if(componentValue.isEmpty()){
               throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));

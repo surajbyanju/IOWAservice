@@ -42,8 +42,8 @@
                                 <h:message for="password" style="color: red"/>
 
                                 <h:outputLabel for="confirmPassword" value="Confirm Password: * "  />  
-                                <h:inputSecret id="confirmPassword" label="confPassword" class="form-control" validator="#{componentValidator.validatePasswordField}"/> 
-                                <h:message for="confirmPassword" style="red"/>
+                                <h:inputSecret id="confirmPassword" label="confPassword" class="form-control"/> 
+                                <h:message for="confirmPassword" style="color: red"/>
 
                                 <h:outputLabel for="phoneNo" value="Contact number: * "  />  
                                 <h:inputText id="phoneNo" label="phoneNo" class="form-control" value="#{userController.spUser.userInformation.phoneNo}" validator="#{componentValidator.validateContactNumber}"/>                                                                                           
