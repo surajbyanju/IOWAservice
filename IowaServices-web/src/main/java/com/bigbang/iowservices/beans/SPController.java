@@ -24,14 +24,14 @@ public class SPController {
     /**
      * Creates a new instance of SPController
      */
-    @EJB
-    ServiceRequestFacadeLocal service;
+//    @EJB
+//    ServiceRequestFacadeLocal service;
    @EJB
     EmailService emailService;
     public ServiceRequest sRequest;
   
     public SPController() {
-        service = new ServiceRequestFacade();
+//        service = new ServiceRequestFacade();
         sRequest = new ServiceRequest();
         
     }
@@ -48,7 +48,7 @@ public class SPController {
 //        serviceProviders = searchProviderService.searchServiceProviders(code);
 //        user.setEnabled(Boolean.FALSE);
 //        user.setRole("ROLE_USER");
-        service.create(sRequest);
+//        service.create(sRequest);
 //
         String mLink = "This is the test to sp";
         emailService.sendEmailAfterRegister("sajanamaharjan01@gmail.com", mLink);
