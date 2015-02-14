@@ -34,9 +34,9 @@ public class ComponentValidator {
         String msg = "invalid" + " " + id;
         //System.out.print("component name +++++++"   +  id);
         if(componentValue.isEmpty()){
-              throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+              throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, id+"filed cannot be Empty", id+"filed cannot be Empty"));
         }
-        else if(componentValue.matches("[A-Z][a-zA-Z]*")){
+        else if(componentValue.matches("/^[A-z]+$/")){
               throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
         }
     }
@@ -47,7 +47,7 @@ public class ComponentValidator {
         String msg = "invalid" + " " + id;
         //System.out.print("component name +++++++"   +  id);
         if(componentValue.isEmpty()){
-              throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+              throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, id+"filed cannot be Empty", id+"filed cannot be Empty"));
         }
     }
     
@@ -59,7 +59,7 @@ public class ComponentValidator {
         
         System.out.print("component name +++++++"   +  id);
         if(componentValue.isEmpty()){
-              throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+              throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, id+"filed cannot be Empty", id+"filed cannot be Empty"));
 
         }else if(componentValue.length() > 10 ){
               throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
@@ -77,7 +77,7 @@ public class ComponentValidator {
         
         System.out.print("component name +++++++"   +  id);
         if(componentValue.isEmpty()){
-              throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+              throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, id+"filed cannot be Empty", id+"filed cannot be Empty"));
 
         }
     }
