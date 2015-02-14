@@ -11,6 +11,7 @@ import com.bigbang.iowaservices.entities.Users;
 import com.bigbang.iowaservices.services.SearchProviderService;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -34,6 +35,13 @@ public class SearchProvidersController {
     /**
      * Creates a new instance of SearchProvidersController
      */
+    @PostConstruct
+    public void initProviders() {
+        
+        serviceProviders=serviceProviderFacadeLocal.findAll();
+        System.out.println("ser+  "+getServiceProviders());
+    }
+
     public SearchProvidersController() {
         serviceProviders = new ArrayList<>();
     }

@@ -10,7 +10,9 @@
         <ui:composition template="template/template.xhtml">	
             <ui:define name="content">	
                   
-                <h:outputLabel for="serviceProvider" value ="Service Providers"/>
+               <ui:insert name ="header">
+                   <ui:include src ="/serviceProviderList.xhtml"/>
+                </ui:insert>
                 <br></br>
                 <h:outputLabel for="availableJobs" value ="Available Jobs"/>
                 <br></br>
