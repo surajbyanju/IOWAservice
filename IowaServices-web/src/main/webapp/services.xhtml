@@ -23,7 +23,7 @@
                             
                              <c:set var="count" value="0"/>
                             
-                            <ui:repeat value="#{adminController.allSkills}" var="skill" varStatus="status">
+                             <c:forEach items="#{adminController.allSkills}" var="skill" varStatus="status">
                                 <div class="col-sm-3 col-xs-6">
                                     
                                     #{count}
@@ -45,12 +45,12 @@
                                                     #{count} increase
                                                 </c:otherwise>
                                             </c:choose>
-                                            
+                                               
                                         </div>
                                     </div>
                                 </div>
                                 
-                            </ui:repeat>
+                             </c:forEach>
                             
                         </div>
                     </div>
