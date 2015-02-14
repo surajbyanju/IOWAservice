@@ -10,48 +10,9 @@
         <ui:composition template="template/template.xhtml">
             <ui:define name="content">
                 <!-- section - Services -->
-                <section id="services" class="services pad-section">
-                    <div class="container">
-                        <h2 class="text-center">Our Services</h2> 
-                        <hr />
-                        <div class="row text-center">
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="circle pink-bg">
-                                    <div class="inner-circle">
-                                        <h4>Electrician</h4>
-                                        <h:link value ="Do you have short wires?" outcome="main" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-6">
-                                <div class=" circle green-bg">
-                                    <div class="inner-circle">
-                                        <h4>Plumber</h4>
-
-                                        <h:link value ="Want more than knives and forks?" outcome="main" /> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="circle blue-bg">
-                                    <div class="inner-circle">
-                                        <h4>Painter</h4>
-                                        <h:link value="Want to paint your dreams? " outcome="main" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 col-xs-6">
-                                <div class="circle yellow-bg">
-                                    <div class="inner-circle">
-
-                                        <h4>Carpenter</h4>
-                                        <h:link value="Need a good hammer to bang your head? " outcome="main" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <ui:insert name ="header">
+                    <ui:include src ="/services.xhtml"/>
+                </ui:insert>
                 <!-- /third section -->
                 <!-- section - about us -->
                 <section id="about" class="services pad-section">
@@ -65,7 +26,7 @@
                                 <p>Find Licensed Plumbers and Plumbing Services In search of a local plumber for your home? Sears Home Services can help. Find a professional, reliable plumbing service technician in your area. Get started by providing your location and plumbing repair or installation need.</p>
                                 <p>
                                     Unexpected plumbing breakdowns are a fact of life. Most often, the repairs are not only expensive, they're very inconvenient. And with today's busy schedules who has the time to deal with them? That's where Direct Energy can help!
-
+                                    
                                     Direct Energy is based on a 150-year foundation of energy and home services. We have expanded our services to including plumbing repair. We bring the same level of reliability, competitive pricing and customer service to Plumbing Repair that we have provided for years servicing heating and cooling equipment.
                                     <br/><br/>
                                     We provide in-home sales and services for:
@@ -89,6 +50,6 @@
                 <!-- /third section -->
             </ui:define>
         </ui:composition>
-
+        
     </h:body>
 </html>

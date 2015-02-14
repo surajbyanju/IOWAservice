@@ -39,7 +39,6 @@ public class ServiceProviderFacade extends AbstractFacade<ServiceProvider> imple
 
     @Override
     public List<ServiceProvider> searchServiceProvider(String providerString) {
-        System.out.println("prov+++ "+providerString);
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<ServiceProvider> criteriaQuery = builder.createQuery(ServiceProvider.class);
         Root<ServiceProvider> root = criteriaQuery.from(ServiceProvider.class);

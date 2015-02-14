@@ -9,25 +9,19 @@
         <title>Services</title>
     </h:head>
     <h:body>
-        <f:facet name="title"> List of All the Services</f:facet>
-       
+        <f:facet name="title"> List of All the Services</f:facet>        
         
-        <ui:composition template ="template/template.xhtml">
-            <ui:define name="content">
+<!--        <ui:composition template ="template/template.xhtml">
+            <ui:define name="content">-->
                 
                 <section id="services" class="services pad-section">
                     <div class="container">
                         <h2 class="text-center">Our Services</h2> 
                         <hr />
-                        <div class="row text-center">
-                            
-                             <c:set var="count" value="0"/>
-                            
-                             <c:forEach items="#{adminController.allSkills}" var="skill" varStatus="status">
+                        <div class="row text-center">                            
+                            <c:set var="count" value="0"/>                            
+                            <c:forEach items="#{adminController.allSkills}" var="skill" varStatus="status">
                                 <div class="col-sm-3 col-xs-6">
-                                    
-                                    #{count}
-                                    
                                     <div class="#{adminController.classList.get(count)}" >
                                         <div class="inner-circle">
                                             <h4> ${skill.name}</h4>
@@ -37,27 +31,24 @@
                                             <c:choose>
                                                 <c:when test="${count >= 3}">
                                                     <c:set var="count" value="0"/>
-                                                    #{count}  three
                                                 </c:when>
                                                 <c:otherwise>
-                                                    #{count} before
                                                     <c:set var="count" value="${count+1}"/>
-                                                    #{count} increase
                                                 </c:otherwise>
                                             </c:choose>
-                                               
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 
-                             </c:forEach>
+                            </c:forEach>
                             
                         </div>
                     </div>
                 </section>
-                
+<!--                
             </ui:define>
-        </ui:composition>
+        </ui:composition>-->
     </h:body>
 </html>
 

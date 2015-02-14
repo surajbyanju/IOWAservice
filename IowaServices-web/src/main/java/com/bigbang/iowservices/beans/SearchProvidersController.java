@@ -50,7 +50,6 @@ public class SearchProvidersController {
     }
 
     public String spByCode(String code) {
-        System.out.println("ser+++ " + code);
         serviceProviders = searchProviderService.searchServiceProviders(code);
         return "serviceDetails";
     }

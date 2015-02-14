@@ -17,29 +17,29 @@
                 
                 <section id="services" class="services pad-section">
                     <div class="container">
-                        <h2 class="text-center">Our Services</h2> 
+                        <h2 class="text-center">List of </h2> 
                         <hr />
-                        <div class="row text-center">
-                            <ui:repeat value="#{searchProvidersController.serviceProviders}" var="service">
-                                <li> 
-                                    <h:outputText value="#{service.userInformation.firstName}" />
+                        <div class="row">
+                            <c:set var="count" value="1"/>                            
+                            <c:forEach items="#{searchProvidersController.serviceProviders}" var="service">
+                                <br/> 
+                                <h:form>
+                                    #{count}.
+                                    <h:outputText value="#{service.userInformation.fullName}"/>
+                                    <br/>
                                     <h:outputText value="#{service.username}" />
-                                    <h:outputText value="#{service}" />
-                                    
-                                </li> 
-                            </ui:repeat>
-                            
-                            <c:forEach var="skill" items="#{adminController.allSkills}" varStatus="status">                              
-                                <div class="col-sm-3 col-xs-6">
-                                    
-                                    <div class="circle green-bg" >
-                                        <div class="inner-circle">
-                                            ${status.count} 
-                                            <h4> ${skill.name}</h4>
-                                            <h:commandLink value ="${skill.description}" action="#{adminController.displaySpOfSkill(skill.id.toString())}" />
-                                        </div>
-                                    </div>
-                                </div>
+                                    <br/>
+                                    <h:outputText value="#{service.userInformation.phoneNo}" />
+                                    <br/>
+                                    <h:outputText value="#{service.userInformation.address.street}" />
+                                    <br/>
+                                    <h:outputText value="#{service.userInformation.address.state}" />
+                                    <br/>
+                                    <h:outputText value="#{service.userInformation.address.city}" />  
+                                    <br/>
+                                    <h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP(service.id)}"/>
+                                    <c:set var="count" value="${count+1}"/>
+                                </h:form>
                             </c:forEach>
                             
                         </div>
