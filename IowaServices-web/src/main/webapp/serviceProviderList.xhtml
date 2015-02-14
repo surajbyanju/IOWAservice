@@ -10,10 +10,21 @@
     </h:head>
     <h:body>
         <ui:repeat value="#{searchProvidersController.serviceProviders}" var="service">
-
+            Providers recommended for you:
+            
+            <br/>
+            <br/>
             <h:link outcome="viewProviderDetail" value="#{service.username}">
                 <f:param name="providerId" value="#{service.id}"/>
             </h:link> 
+            <h:outputText value="#{service.userInformation.fullName}"/>
+            <br/>
+            
+            <h:outputText value="#{service.userInformation.phoneNo}"/>
+            <br/>
+            
+           
+            <br/>
         </ui:repeat>
     </h:body>
 </html>
