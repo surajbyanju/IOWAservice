@@ -45,8 +45,8 @@ public class UserController {
     private List<Skill> skillsValue;
     private List<String> selectedSkills;
     private final static String messageLink = "http://localhost:8080/IowaServices-web/validateUser.jsf?userId=";
-
-    /**
+    
+     /**
      * Creates a new instance of UserController
      */
     @PostConstruct
@@ -114,7 +114,13 @@ public class UserController {
      }
      
      public String updateUserInfo(){
-         return "";
+        Long userId = loginController.getUser().getId();
+         System.out.println(userId + "++++++");       
+         Users user = service.find(userId);
+        user.setEnabled(Boolean.TRUE);
+        service.edit(user);
+        return "home";
+        
      }
      
      public String changePassword(){
@@ -166,5 +172,5 @@ public class UserController {
     }
     
     
-
+    
 }

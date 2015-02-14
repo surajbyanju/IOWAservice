@@ -10,7 +10,7 @@
             /WEB-INF/spring/security.xml
             /WEB-INF/spring/application-context.xml
         </param-value>
-    </context-param>
+ </context-param>
 	
     <!-- Enable Spring Security -->
     <filter>

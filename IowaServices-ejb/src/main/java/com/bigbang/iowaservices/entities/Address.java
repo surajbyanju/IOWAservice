@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -23,8 +24,13 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Size(min=1, message="Empty street")
     private String street;
+    
+    @Size(min=1, message="Empty city")
     private String city;
+    
     private String stateVal;
 
     public String getStreet() {

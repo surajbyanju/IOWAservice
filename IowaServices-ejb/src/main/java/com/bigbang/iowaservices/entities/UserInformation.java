@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -23,8 +25,14 @@ public class UserInformation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
+    
+    @Size(min = 1, message="Empty firstname")
+    private String firstName;        
+    
+    @Size(min=1, message = "Empty lastname")
     private String lastName;
+    
+   
     private String phoneNo;
     
     @OneToOne(cascade = CascadeType.ALL)
