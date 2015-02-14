@@ -41,7 +41,7 @@
                                 <h:outputLabel for="email" value="Email: * " />  
                                     <h:inputText id="email" label="email" class="form-control" value="#{userController.user.username}">  
                                     <f:validator validatorId="com.bigbang.iowaservices.validator.customValidator"  />
-                                   
+                                    <f:validator validatorId="com.bigbang.iowaservices.validator.usernameExistValidator"  />
                                     </h:inputText>
                                 <h:message for="email" style="color:red" />
                                 
