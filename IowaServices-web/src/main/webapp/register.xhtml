@@ -14,38 +14,32 @@
                 <div class="container-fluid" >
                     <div class="container" >
                         <div class="row login_options pull-right">
-                            <h:link value="Register as Service Provider" outcome="/serviceProvider/registerSP" />  
-<!--                            <h:link value="Login" outcome="main" /> | 
-                            <h:link value="Register" outcome="register"/>-->
+                            <h:link value="Register as Service Provider" outcome="/serviceProvider/registerSP" /> 
                         </div>
                     </div> 
                 </div>
-                
+
                 <div class="login col-lg-8 col-md-offset-2 col-md-8 col-lg-offset-2">                    
                     <section class="tbl-holder">
                         <h:form id="registeForm" prependId="false">
-                            <!-- Messages must be global here, to show bad credentials -->
                             <h:messages globalOnly="true"/>
 
-                            <!-- Id's must not be changed to support spring security check -->
                             <h:panelGrid columns="3" class="tblform">
-                                 <h:outputLabel for="firstName" value="First Name: * " />  
-                                 <h:inputText id="firstName" label="firstName" class="form-control" value="#{userController.user.userInformation.firstName}" validator= "#{componentValidator.validateTextInput}"/>
-                                 <h:message for="firstName" style="color:red" />
-                                
+                                <h:outputLabel for="firstName" value="First Name: * " />  
+                                <h:inputText id="firstName" label="firstName" class="form-control" value="#{userController.user.userInformation.firstName}" validator= "#{componentValidator.validateTextInput}"/>
+                                <h:message for="firstName" style="color:red" />
+
                                 <h:outputLabel for="lastName" value="Last Name: * " />  
                                 <h:inputText id="lastName" label="lastName" class="form-control" value="#{userController.user.userInformation.lastName}" validator ="#{componentValidator.validateTextInput}"/>  
                                 <h:message for="lastName" style="color:red" />
 
-                                <!-- email custom validator -->
                                 <h:outputLabel for="email" value="Email: * " />  
-                                    <h:inputText id="email" label="email" class="form-control" value="#{userController.user.username}">  
+                                <h:inputText id="email" label="email" class="form-control" value="#{userController.user.username}">  
                                     <f:validator validatorId="com.bigbang.iowaservices.validator.customValidator"  />
-                                   
-                                    </h:inputText>
+                                </h:inputText>
                                 <h:message for="email" style="color:red" />
-                                
-                                
+
+
                                 <f:event listener="#{componentValidator.validatePassword}" type="postValidate" />
                                 <h:outputLabel for="password" value="Password: * "  />  
                                 <h:inputSecret id="password" label="password" class="form-control" value="#{userController.user.password}" validator="#{componentValidator.validatePasswordField}"/>  
@@ -59,9 +53,6 @@
                                 <h:inputText id="phoneNo" label="phoneNo" class="form-control" value="#{userController.user.userInformation.phoneNo}" validator="#{componentValidator.validateContactNumber}"/>                                                                                           
                                 <h:message for="phoneNo" style="color:red" />
 
-                                <h:outputLabel for="address" value="Address:" />  
-                                <h:outputLabel for="address" value="" /> 
-                               
                                 <h:outputLabel for="street" value="Street: " />  
                                 <h:inputText id="street" label="street" class="form-control" value="#{userController.user.userInformation.address.street}" validator="#{componentValidator.validAddress}"/>  
                                 <h:message for="street" style="color:red" />
@@ -70,12 +61,16 @@
                                 <h:inputText id="city" label="city " class="form-control" value="#{userController.user.userInformation.address.city}" validator="#{componentValidator.validAddress}"/> 
                                 <h:message for="city" style="color:red" />
 
-                                <h:outputLabel for="state " value="State:" />  
+                                <h:outputLabel for="state" value="State:" />  
                                 <h:selectOneMenu value="#{userController.user.userInformation.address.state}">
                                     <f:selectItems value="#{userController.user.userInformation.address.stateValue}" />
                                 </h:selectOneMenu>
+                                <h:outputLabel for="" value="" />
 
+                                <h:outputLabel for="register" value=" " /> 
                                 <h:commandButton action="#{userController.register}" type="submit" id="register" value="Register" class="btn-primary btn"/>
+                                <h:outputLabel for="" value="" />
+                            
                             </h:panelGrid>
                         </h:form>
                     </section>
@@ -86,23 +81,23 @@
 
     </h:body>
 
-          
-        <!--<ui:define name="Javascript">-->
-            <f:verbatim>
-            <script>
-        
-                function toggle(){
-                    alert("jere");
-                }
-                //         <![CDATA[
-                $(document).ready(function () {
-                    alert("jere");
-                    document.getElementById('selUserSkills').style.display = 'none';
-                });
-                //        ]]>
-        
-            </script>
-                </f:verbatim>
-        <!--</ui:define>-->
+
+    <!--<ui:define name="Javascript">-->
+    <f:verbatim>
+        <script>
+
+            function toggle() {
+                alert("jere");
+            }
+            //         <![CDATA[
+            $(document).ready(function () {
+                alert("jere");
+                document.getElementById('selUserSkills').style.display = 'none';
+            });
+            //        ]]>
+
+        </script>
+    </f:verbatim>
+    <!--</ui:define>-->
 
 </html>
