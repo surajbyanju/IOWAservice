@@ -130,7 +130,7 @@ public class ComponentValidator {
             
             String skillCode = (String)value;
             
-            System.out.print(skillCode + " +++++++++++++++++++++++++++");
+            System.out.print(skillCode + "+++++++++++++++++++++++++++");
             
             skill = service.findByCode(skillCode);
             if(skill!= null){
