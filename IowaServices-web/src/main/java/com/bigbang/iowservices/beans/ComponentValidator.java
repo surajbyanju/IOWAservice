@@ -5,6 +5,10 @@
  */
 package com.bigbang.iowservices.beans;
 
+import com.bigbang.iowaservices.boundary.SkillFacadeLocal;
+import com.bigbang.iowaservices.boundary.UsersFacadeLocal;
+import com.bigbang.iowaservices.entities.Skill;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -21,6 +25,11 @@ import javax.faces.validator.ValidatorException;
 @ManagedBean
 @RequestScoped
 public class ComponentValidator {
+    
+    
+    @EJB
+    private SkillFacadeLocal service;
+    private Skill skill;
     /**
      * Creates a new instance of ComponentValidator
      */
@@ -116,7 +125,19 @@ public class ComponentValidator {
  
 	}
     
+        //admin add skill validation
+        public void validateSkillCode(FacesContext context, UIComponent component, Object value) throws ValidatorException{
+            
+            String skillCode = (String)value;
+            
+            System.out.print(skillCode + " +++++++++++++++++++++++++++");
+            
+            skill = service.findByCode(skillCode);
+            if(skill!= null){
+                 throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Skill code already exist.", "Skill code already exist."));
+            }
+            
+        }
 }
-
 
 

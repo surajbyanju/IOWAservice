@@ -18,7 +18,8 @@
                         <div class="col-md-offset-2 col-md-4">
                             <h:form id="addSkillForm" prependId="false" >
                                 <h:outputLabel for="skillCode" value="Skill Code * " />  
-                                <h:inputText id="skillCode" label="skillCode" class="form-control" value="#{adminController.newSkill.code}"/>  
+                                <h:inputText id="skillCode" label="skillCode" class="form-control" value="#{adminController.newSkill.code}" validator="#{componentValidator.validateSkillCode}"/>  
+                                <h:message for="skillCode" style="color:red"/>
                                 <br/>
                                 <h:outputLabel for="skillName" value="Skill Name: * "  />  
                                 <h:inputText id="skillName" label="skillName" class="form-control" value="#{adminController.newSkill.name}"/> 

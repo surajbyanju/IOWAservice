@@ -8,7 +8,9 @@ package com.bigbang.iowaservices.boundary;
 import com.bigbang.iowaservices.entities.Skill;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -30,7 +32,15 @@ public class SkillFacade extends AbstractFacade<Skill> implements SkillFacadeLoc
 
     @Override
     public Skill findByCode(String code) {
-        return (Skill)em.createNamedQuery("findSkillByCode").setParameter("code", code).getSingleResult();
+    
+         try {
+                Query query = em.createNamedQuery("findSkillByCode");
+                query.setParameter("code", code);    
+                return (Skill)query.getSingleResult();
+          } catch (NoResultException e) {
+            return null;
+          }
+      
+        }
     }
     
-}
