@@ -7,6 +7,7 @@ package com.bigbang.iowservices.beans;
 
 import com.bigbang.iowaservices.boundary.ServiceRequestFacade;
 import com.bigbang.iowaservices.boundary.ServiceRequestFacadeLocal;
+import com.bigbang.iowaservices.boundary.UsersFacade;
 import com.bigbang.iowaservices.boundary.UsersFacadeLocal;
 import com.bigbang.iowaservices.entities.ServiceProvider;
 import com.bigbang.iowaservices.entities.ServiceRequest;
@@ -37,8 +38,8 @@ public class SPController {
     @EJB
     UsersFacadeLocal userService;
     public ServiceRequest sRequest;
-    @ManagedProperty(value = "#{loginController}")
-    private LoginController loginController;
+    @ManagedProperty(value = "#{loginControl}")
+    private LoginController loginControl;
     private Users user;
 
     public SPController() {
@@ -53,12 +54,12 @@ public class SPController {
      * @return
      */
     public String hireSP(ServiceProvider serviceProvider) {
-        
-        System.out.println("ser+++ " + serviceProvider + "sebding service request");
-        user = userService.getUserInfo(loginController.getUser().getUsername());
+
+        System.out.println("ser+++ " + serviceProvider + "  " + loginControl);
+//        user = userService.getUserInfo(loginController.getUser().getUsername());
         sRequest.setAccepted(Boolean.FALSE);
         sRequest.setServiceProvider(serviceProvider);
-        sRequest.setUsers(user);
+        sRequest.setUsers(loginControl.getUser());
         sRequest.setRequestDate(null);
         service.create(sRequest);
 
@@ -66,4 +67,13 @@ public class SPController {
         emailService.sendEmailAfterRegister("sajanamaharjan01@gmail.com", mLink);
         return "home";
     }
+
+    public LoginController getLoginControl() {
+        return loginControl;
+    }
+
+    public void setLoginControl(LoginController loginControl) {
+        this.loginControl = loginControl;
+    }
+
 }
