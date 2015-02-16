@@ -7,7 +7,9 @@ package com.bigbang.iowaservices.startup;
 
 import com.bigbang.iowaservices.boundary.SkillFacadeLocal;
 import com.bigbang.iowaservices.boundary.UsersFacadeLocal;
+import com.bigbang.iowaservices.entities.Address;
 import com.bigbang.iowaservices.entities.Skill;
+import com.bigbang.iowaservices.entities.UserInformation;
 import com.bigbang.iowaservices.entities.Users;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -35,7 +37,18 @@ public class StartUpApplication {
     public void initApp(){
     
         user = new Users();
+        UserInformation userInformation = new UserInformation();
+        Address address = new Address();
+        address.setCity("Fairfield");
+        address.setState("1000 N 4th street");
+        address.setState("IOWA");
         
+        userInformation.setAddress(address);
+        userInformation.setFirstName("Admin");
+        userInformation.setLastName("Admin");
+        userInformation.setPhoneNo("1234567890");
+        
+        user.setUserInformation(userInformation);
         user.setPassword("admin");
         user.setRole("ROLE_ADMIN");
         user.setUsername("admin");
