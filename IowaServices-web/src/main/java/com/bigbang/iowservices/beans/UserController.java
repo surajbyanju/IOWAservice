@@ -13,12 +13,11 @@ import com.bigbang.iowaservices.entities.Skill;
 import com.bigbang.iowaservices.entities.Users;
 import com.bigbang.iowaservices.services.EmailService;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
@@ -45,8 +44,8 @@ public class UserController {
     private List<Skill> skillsValue;
     private List<String> selectedSkills;
     private final static String messageLink = "http://localhost:8080/IowaServices-web/validateUser.jsf?userId=";
-    
-     /**
+
+    /**
      * Creates a new instance of UserController
      */
     @PostConstruct
@@ -75,7 +74,8 @@ public class UserController {
 
         String mLink = messageLink + user.getId();
         emailService.sendEmailAfterRegister(user.getUsername(), mLink);
-        return "home";
+        FacesContext.getCurrentInstance().addMessage("test", new javax.faces.application.FacesMessage("Thank you for registering. We have sent you a mail to validate you account."));
+        return "/home";
     }
 
     public String registerSP() {
@@ -90,6 +90,7 @@ public class UserController {
         service.create(spUser2);
         String mLink = messageLink + spUser2.getId();
         emailService.sendEmailAfterRegister(spUser2.getUsername(), mLink);
+        FacesContext.getCurrentInstance().addMessage("test", new javax.faces.application.FacesMessage("Thank you for registering. We have sent you a mail to validate you account."));
         return "/home";
     }
 
@@ -102,30 +103,30 @@ public class UserController {
         service.edit(user);
         return "login";
     }
-    
+
     public String userInfo() {
         user = service.getUserInfo(loginController.getUser().getUsername());
         return "/profile";
     }
-     
-     public String editUserInfo(){
-         user = service.getUserInfo(loginController.getUser().getUsername());
-         return "editProfile";
-     }
-     
-     public String updateUserInfo(){
+
+    public String editUserInfo() {
+        user = service.getUserInfo(loginController.getUser().getUsername());
+        return "editProfile";
+    }
+
+    public String updateUserInfo() {
         Long userId = loginController.getUser().getId();
-         System.out.println(userId + "++++++");       
-         Users user = service.find(userId);
+        System.out.println(userId + "++++++");
+        Users user = service.find(userId);
         user.setEnabled(Boolean.TRUE);
         service.edit(user);
         return "home";
-        
-     }
-     
-     public String changePassword(){
-         return "";
-     }
+
+    }
+
+    public String changePassword() {
+        return "";
+    }
 
     public UsersFacadeLocal getService() {
         return service;
@@ -170,7 +171,5 @@ public class UserController {
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
-    
-    
-    
+
 }
