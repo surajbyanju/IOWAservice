@@ -32,7 +32,7 @@
                                     <ul class="nav navbar-nav navbar-right">
                                         <li><h:link value="Home" outcome= "/home"/></li>
                                         <li class="onepage"><a  href="#about">About</a></li>
-                                        <li  class="onepage"><a href="#services">Services</a></li>
+                                        <li><h:link outcome="/serviceProviderList.jsf" value="Services"></h:link></li>
 
                                         <!--<li ><h:link value="Admin" outcome="/services" /></li>-->
                                         <ui:fragment rendered="#{request.userPrincipal != null}">
