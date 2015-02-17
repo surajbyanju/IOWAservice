@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,10 +32,22 @@ public class ServiceProvider extends Users implements Serializable {
     
     @OneToMany
     private List<ServiceRequest> serviceRequests;
+    
+    @OneToMany(mappedBy = "serviceProvider")
+    private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public ServiceProvider() {
         skills = new ArrayList<>();
         serviceRequests = new ArrayList<>();
+        comments = new ArrayList<>();
     }
 
     public List<Skill> getSkills() {

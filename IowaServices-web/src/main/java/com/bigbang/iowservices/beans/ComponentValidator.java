@@ -110,9 +110,9 @@ public class ComponentValidator {
 		: uiInputConfirmPassword.getLocalValue().toString();
  
 	  // Let required="true" do its job.
-	  if (password.isEmpty() || confirmPassword.isEmpty()) {
-		return;
-	  }
+//	  if (password.isEmpty() || confirmPassword.isEmpty()) {
+//		return;
+//	  }
  
 	  if (!password.equals(confirmPassword)) {
  

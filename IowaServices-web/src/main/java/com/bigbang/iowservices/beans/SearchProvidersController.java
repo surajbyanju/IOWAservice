@@ -5,7 +5,9 @@
  */
 package com.bigbang.iowservices.beans;
 
+import com.bigbang.iowaservices.boundary.CommentFacadeLocal;
 import com.bigbang.iowaservices.boundary.ServiceProviderFacadeLocal;
+import com.bigbang.iowaservices.entities.Comment;
 import com.bigbang.iowaservices.entities.ServiceProvider;
 import com.bigbang.iowaservices.entities.Users;
 import com.bigbang.iowaservices.services.SearchProviderService;
@@ -29,8 +31,11 @@ public class SearchProvidersController {
     SearchProviderService searchProviderService;
     @EJB
     ServiceProviderFacadeLocal serviceProviderFacadeLocal;
+    @EJB
+    CommentFacadeLocal commentFacade;
     private List<ServiceProvider> serviceProviders;
     private ServiceProvider serviceProvider;
+    private List<Comment> comments;
 
     /**
      * Creates a new instance of SearchProvidersController
@@ -63,6 +68,8 @@ public class SearchProvidersController {
     public void preRenderView(String providerId) {
         if (!providerId.isEmpty()) {
             serviceProvider = serviceProviderFacadeLocal.find(Long.parseLong(providerId));
+            comments=commentFacade.getCommentOfProvider(Long.parseLong(providerId));
+            
         }
     }
 
@@ -90,4 +97,13 @@ public class SearchProvidersController {
         this.serviceProvider = serviceProvider;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    
 }
