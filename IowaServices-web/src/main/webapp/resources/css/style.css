@@ -139,18 +139,15 @@ box-shadow: 0 0 2px #000;
 
 /*=Tables
 ---------------------------------------*/
-table {  border-collapse: collapse; border-spacing: 0; margin-bottom: 15px; width: 100%; box-shadow: 0px 2px 0px #ccc; }
-table tr { border: 1px solid #bbb; }
-table thead tr{ background-color: #C9C8C8; }
-table th { background-color: #C9C8C8; }
-table tr:first-child { border-top: 1px solid #bbb; }
-table th, table td { vertical-align: top; padding: 8px 10px; font-size: 12px; border-left: 1px solid #bbb; }
-table th:first-child , table td:first-child { border-left: none; }
-table  td * { margin:0 !important; padding: 0 !important;}
+table.skill-list {  border-collapse: collapse; border-spacing: 0; margin-bottom: 15px; width: 100%; box-shadow: 0px 2px 0px #ccc; }
+table.skill-list tr { border: 1px solid #bbb; }
+table.skill-list thead tr{ background-color: #C9C8C8; }
+table.skill-list th { background-color: #C9C8C8; }
+table.skill-list tr:first-child { border-top: 1px solid #bbb; }
+table.skill-list th, table.skill-list td { vertical-align: top; padding: 8px 10px; font-size: 12px; border-left: 1px solid #bbb; }
+table.skill-list th:first-child , table td:first-child { border-left: none; }
+table.skill-list  td * { margin:0 !important; padding: 0 !important;}
 
-.skill-list tr{
-   
-}
 
 /*=Themes and Colors
 ---------------------------------------*/
