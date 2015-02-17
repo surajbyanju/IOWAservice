@@ -27,7 +27,6 @@ import javax.servlet.ServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,13 +44,13 @@ public class LoginController implements PhaseListener {
     @EJB
     UsersFacadeLocal userFacade;
     private Users user;
-     protected final Log logger = LogFactory.getLog(getClass());
-    
+    protected final Log logger = LogFactory.getLog(getClass());
+
     /**
      *
-     * Redirects the login request directly to spring security check.
-     * Leave this method as it is to properly support spring security.
-     * 
+     * Redirects the login request directly to spring security check. Leave this
+     * method as it is to properly support spring security.
+     *
      * @return
      * @throws ServletException
      * @throws IOException
@@ -67,11 +66,11 @@ public class LoginController implements PhaseListener {
 
         FacesContext.getCurrentInstance().responseComplete();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth!=null){
-            user=userFacade.getUserInfo(auth.getName());
+        if (auth != null) {
+            user = userFacade.getUserInfo(auth.getName());
         }
-       
-        System.out.println("user+++ "+user.getUserInformation().getFirstName());
+
+        System.out.println("user+++ " + user.getUserInformation().getFirstName());
         return "protected";
     }
 
@@ -85,19 +84,19 @@ public class LoginController implements PhaseListener {
      */
     public void beforePhase(PhaseEvent event) {
         Exception e = (Exception) FacesContext.getCurrentInstance().
-          getExternalContext().getSessionMap().get(WebAttributes.AUTHENTICATION_EXCEPTION);
- 
+                getExternalContext().getSessionMap().get(WebAttributes.AUTHENTICATION_EXCEPTION);
+
         if (e instanceof BadCredentialsException) {
-            logger.debug("Found exception in session map: "+e);
+            logger.debug("Found exception in session map: " + e);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(
                     WebAttributes.AUTHENTICATION_EXCEPTION, null);
-            FacesContext.getCurrentInstance().addMessage(null, 
-              new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                "Username or password not valid.", "Username or password not valid"));
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Username or password not valid.", "Username or password not valid"));
         }
     }
-    
-    public LoginController(){
+
+    public LoginController() {
         user = new Users();
         userFacade = new UsersFacade();
     }
@@ -110,16 +109,29 @@ public class LoginController implements PhaseListener {
     public PhaseId getPhaseId() {
         return PhaseId.RENDER_RESPONSE;
     }
-    
-    public String test(){
+
+    public void checkUser() throws IOException {
+        
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        System.out.println("user+++ "+user.getRole());
+        if (null != user.getRole()) 
+            switch (user.getRole()) {
+            case "ROLE_ADMIN":
+                ec.redirect(ec.getRequestContextPath() + "/admin/adminDashboard.jsf");
+                break;
+            case "ROLE_SP":
+                ec.redirect(ec.getRequestContextPath() + "/serviceProvider/spDashboard.jsf");
+                break;
+        }
+        
+    }
+
+    public String test() {
         return "login";
     }
 
     public Users getUser() {
         return user;
     }
-    
-    
-    
-    
+
 }
