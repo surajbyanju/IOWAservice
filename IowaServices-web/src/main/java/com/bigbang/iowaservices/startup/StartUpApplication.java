@@ -21,7 +21,7 @@ import javax.ejb.Startup;
  * @author dell
  */
 @Singleton
-@Startup
+//@Startup
 public class StartUpApplication {
 
     // Add business logic below. (Right-click in editor and choose

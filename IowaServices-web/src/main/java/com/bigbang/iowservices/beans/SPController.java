@@ -7,23 +7,22 @@ package com.bigbang.iowservices.beans;
 
 import com.bigbang.iowaservices.boundary.ServiceRequestFacade;
 import com.bigbang.iowaservices.boundary.ServiceRequestFacadeLocal;
-import com.bigbang.iowaservices.boundary.UsersFacade;
 import com.bigbang.iowaservices.boundary.UsersFacadeLocal;
 import com.bigbang.iowaservices.entities.ServiceProvider;
 import com.bigbang.iowaservices.entities.ServiceRequest;
 import com.bigbang.iowaservices.entities.Users;
 import com.bigbang.iowaservices.services.EmailService;
 import javax.ejb.EJB;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
 /**
  *
  * @author sajana
  */
-@Named(value = "sPController")
-@Dependent
+@ManagedBean
+@RequestScoped
 
 public class SPController {
 
@@ -37,9 +36,9 @@ public class SPController {
 
     @EJB
     UsersFacadeLocal userService;
-    public ServiceRequest sRequest;
-    @ManagedProperty(value = "#{loginControl}")
-    private LoginController loginControl;
+    private ServiceRequest sRequest;
+     @ManagedProperty(value = "#{loginController}")
+    private LoginController loginController;
     private Users user;
 
     public SPController() {
@@ -55,11 +54,10 @@ public class SPController {
      */
     public String hireSP(ServiceProvider serviceProvider) {
 
-        System.out.println("ser+++ " + serviceProvider + "  " + loginControl);
 //        user = userService.getUserInfo(loginController.getUser().getUsername());
         sRequest.setAccepted(Boolean.FALSE);
         sRequest.setServiceProvider(serviceProvider);
-        sRequest.setUsers(loginControl.getUser());
+        sRequest.setUsers(loginController.getUser());
         sRequest.setRequestDate(null);
         service.create(sRequest);
 
@@ -68,12 +66,22 @@ public class SPController {
         return "home";
     }
 
-    public LoginController getLoginControl() {
-        return loginControl;
+    public LoginController getLoginController() {
+        return loginController;
     }
 
-    public void setLoginControl(LoginController loginControl) {
-        this.loginControl = loginControl;
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
     }
+
+
+    public ServiceRequest getsRequest() {
+        return sRequest;
+    }
+
+    public void setsRequest(ServiceRequest sRequest) {
+        this.sRequest = sRequest;
+    }
+    
 
 }
