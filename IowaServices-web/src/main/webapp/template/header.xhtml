@@ -30,9 +30,8 @@
                                 </div>
                                 <div class="collapse navbar-collapse col-lg-4 col-lg-offset-1" id="navbar-collapse-main">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li><h:link value="Home" outcome= "/home"/></li>
                                         <li class="onepage"><a  href="#about">About</a></li>
-                                        <li><h:link outcome="/serviceProviderList.jsf" value="Services"></h:link></li>
+                                        <li class="onepage"><a href="#services">Services</a></li>
                                         <ui:fragment rendered="#{request.userPrincipal != null}">
                                             <ui:fragment rendered="#{request.isUserInRole('ROLE_ADMIN')}">
                                                 <li ><h:link value="Skills" outcome="/admin/skills" /></li>
