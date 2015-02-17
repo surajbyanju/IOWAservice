@@ -62,7 +62,7 @@ public class SPController {
         service.create(sRequest);
 
         String mLink = "This is the test to sp";
-        emailService.sendEmailAfterRegister("sajanamaharjan01@gmail.com", mLink);
+        emailService.sendEmailAfterRegister(serviceProvider.getUsername(), mLink);
         return "home";
     }
 

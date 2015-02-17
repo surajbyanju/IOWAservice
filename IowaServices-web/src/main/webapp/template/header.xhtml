@@ -33,12 +33,10 @@
                                         <li><h:link value="Home" outcome= "/home"/></li>
                                         <li class="onepage"><a  href="#about">About</a></li>
                                         <li><h:link outcome="/serviceProviderList.jsf" value="Services"></h:link></li>
-
-                                        <!--<li ><h:link value="Admin" outcome="/services" /></li>-->
                                         <ui:fragment rendered="#{request.userPrincipal != null}">
                                             <ui:fragment rendered="#{request.isUserInRole('ROLE_ADMIN')}">
-                                                <li ><h:link value="Add Skills" outcome="/admin/addSkills" /></li>
-                                                <li ><h:link value="Admin" outcome="/services" /></li>
+                                                <li ><h:link value="Skills" outcome="/admin/skills" /></li>
+                                                <!--<li ><h:link value="Admin" outcome="/services" /></li>-->
                                             </ui:fragment>
                                         </ui:fragment>
 
