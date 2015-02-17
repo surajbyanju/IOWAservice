@@ -37,9 +37,7 @@ public class SearchProvidersController {
      */
     @PostConstruct
     public void initProviders() {
-        
         serviceProviders=serviceProviderFacadeLocal.findAll();
-        System.out.println("ser+  "+getServiceProviders());
     }
 
     public SearchProvidersController() {
@@ -54,7 +52,7 @@ public class SearchProvidersController {
 
     public String searchServiceProviders() {
         serviceProviders = searchProviderService.searchServiceProviders(searchString);
-        return "serviceProviderList";
+        return "serviceDetails";
     }
 
     public String spByCode(String code) {
