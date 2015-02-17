@@ -16,9 +16,9 @@
                         <div class="row">
                             <section class="tbl-holder ">
 
-                                <li ><h:link value="Add New Skills" outcome="/admin/addSkills" /></li>
+                                <p><h:link value="Add New Skill" outcome="/admin/addSkills" /></p>
 
-                                <h:dataTable value="#{adminController.allSkills}" var="skill" >
+                                <h:dataTable class="skill-list" value="#{adminController.allSkills}" var="skill" >
                                     <h:column class="col-md-3">    				
                                         <f:facet name="header">Code</f:facet>    				
                                             #{skill.code}
