@@ -5,6 +5,9 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:metadata>
+        <f:event listener="#{sPController.preRenderView(request.getParameter('providerId'))}" type="preRenderView"/>
+    </f:metadata>
     <h:head>
         <title>Add Skills</title>
     </h:head>
@@ -16,30 +19,26 @@
                         <h3 class="text-center">Create a Service Request </h3> 
                         <hr/>
                         <div class="col-md-offset-2 col-md-4">
-<!--                            <h:form id="addSkillForm" prependId="false" >
+                            <h:form id="addSkillForm" prependId="false" >
                                 <h:outputLabel for="startDate" value="Start Date * " />  
-                                <h:inputText id="startDate" label="startDate" class="form-control" value="#{adminController.newSkill.code}" validator="#{componentValidator.validateSkillCode}"/>  
-                                <h:message for="startDate" />
-                                <li>The date you want your work to be begun.</li>
-                                <br/>
                                 
-                                <h:outputLabel for="workDescription" value="Work Description * " />  
-                                <h:inputTextarea id="skillDesc" label="workDescription" class="form-control" value="#{adminController.newSkill.description}"/> 
+                                <h:message for="startDate" />
+                                <li>The date you want your work to be begun.(yy-mm-dd)</li>
+                                <br/>                                
+                                <h:outputLabel for="workDescription" value="Work Description * "  />  
+                                <h:inputTextarea id="skillDesc" label="workDescription" class="form-control" value="#{sPController.serviceRequest.workDescription}" /> 
                                 <br/>
-                                                         <h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP(searchProvidersController.serviceProvider)}"/>
-                            </h:form>-->
+                                #{sPController.serviceProvider}
+                                <h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP(sPController.serviceProvider)}">
+                                </h:commandButton>
+                            </h:form>
                         </div>
                         
                     </section>
                 </div>
                 
-            </ui:define>
-            
-            
-            
-            
+            </ui:define>            
         </ui:composition>
-        
         
     </h:body>
 </html>

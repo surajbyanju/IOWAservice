@@ -66,11 +66,17 @@ public class SearchProvidersController {
     }
 
     public void preRenderView(String providerId) {
+        System.out.println("provider id +++ "+providerId);
         if (!providerId.isEmpty()) {
             serviceProvider = serviceProviderFacadeLocal.find(Long.parseLong(providerId));
             comments=commentFacade.getCommentOfProvider(Long.parseLong(providerId));
             
         }
+    }
+    
+    public String viewDetail(){
+        System.out.println("here +++ "+serviceProvider);
+        return "viewProviderDetail";
     }
 
     public String getSearchString() {

@@ -1,11 +1,12 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.bigbang.iowservices.beans;
 
 import com.bigbang.iowaservices.boundary.CommentFacadeLocal;
+import com.bigbang.iowaservices.boundary.ServiceProviderFacadeLocal;
 import com.bigbang.iowaservices.boundary.ServiceRequestFacade;
 import com.bigbang.iowaservices.boundary.ServiceRequestFacadeLocal;
 import com.bigbang.iowaservices.boundary.UsersFacadeLocal;
@@ -15,14 +16,15 @@ import com.bigbang.iowaservices.entities.ServiceRequest;
 import com.bigbang.iowaservices.entities.Users;
 import com.bigbang.iowaservices.services.EmailService;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+
 
 /**
  *
@@ -32,87 +34,124 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 
 public class SPController {
-    
+
     /**
      * Creates a new instance of SPController
      */
     @EJB
-            ServiceRequestFacadeLocal service;
+    ServiceRequestFacadeLocal service;
     @EJB
-            EmailService emailService;
-    
+    EmailService emailService;
+
     @EJB
-            UsersFacadeLocal userService;
+    UsersFacadeLocal userService;
     @EJB
-            CommentFacadeLocal commentFacade;
-    private ServiceRequest sRequest;
+    CommentFacadeLocal commentFacade;
+    private ServiceRequest serviceRequest;
     @ManagedProperty(value = "#{loginController}")
     private LoginController loginController;
+    @EJB
+    ServiceProviderFacadeLocal serviceProviderFacadeLocal;
     private Users user;
     private String subject;
     private String msgBody;
-    
+
     private Comment comments;
-    
+    private ServiceProvider serviceProvider;
+
     public SPController() {
         service = new ServiceRequestFacade();
-        sRequest = new ServiceRequest();
+        serviceRequest = new ServiceRequest();
         comments = new Comment();
-        
+        serviceProvider = new ServiceProvider();
+
     }
-    
+
     /**
      *
      * @param serviceProvider
      * @return
      */
-    public String hireSP(ServiceProvider serviceProvider) {
-        
+    
+    public void preRenderView(String providerId) {
+        System.out.println("provider id +++ "+providerId);
+        if (!providerId.isEmpty()) {
+            serviceProvider = serviceProviderFacadeLocal.find(Long.parseLong(providerId));
+            System.out.println("serv +++ "+serviceProvider);
+            
+        }
+    }
+    public String hireSP() {
+
 //        username = userService.getUserInfo(loginController.getUser().getUsername());
-        sRequest.setAccepted(Boolean.FALSE);
-        sRequest.setServiceProvider(serviceProvider);
-        sRequest.setUsers(loginController.getUser());
-        sRequest.setRequestDate(new Date());
-        sRequest.setWorkDescription("JUSt dummy for now");
-        sRequest.setStartDate(new Date());
-        service.create(sRequest);
+        System.out.println("sp+++++ "+serviceProvider);
+        Map<String,String> params =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+	  String action = params.get("service");
+          System.out.println("action+++ "+action);
+        serviceRequest.setAccepted(Boolean.FALSE);
+        serviceRequest.setServiceProvider(serviceProvider);
+        serviceRequest.setUsers(loginController.getUser());
+        serviceRequest.setRequestDate(new Date());
+        serviceRequest.setWorkDescription("JUSt dummy for now");
+        serviceRequest.setStartDate(new Date());
+        service.create(serviceRequest);
+
+//        System.out.println("Dear Service Provider " + serviceProvider.getUserInformation().getFullName());
         subject = "New Service Request";
-        
+
         msgBody = "Dear Service Provider " + serviceProvider.getUserInformation().getFullName()
                 + ", \n\n You have a new Service Request!"
                 + "\n\n\n\n please check your Iowa Services account ";
-        
+
         emailService.serviceRequestEmail(serviceProvider.getUsername(), subject, msgBody);
+        FacesContext.getCurrentInstance().addMessage("test", new javax.faces.application.FacesMessage("Your Service Request has been sent."));
         return "home";
     }
-    
+
     public LoginController getLoginController() {
         return loginController;
     }
-    
+
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
-    
+
     public void postComment(ServiceProvider provider) throws IOException {
-        
+
         comments.setServiceProvider(provider);
-        
+
         Date curDate = new Date();
-        
+
         comments.setCreationDate(curDate);
         commentFacade.create(comments);
-        
+
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.redirect(context.getRequestContextPath() + "/viewProviderDetail.jsf?providerId=" + provider.getId());
     }
-    
+
     public Comment getComments() {
         return comments;
     }
-    
+
     public void setComments(Comment comments) {
         this.comments = comments;
     }
+
+    public ServiceRequest getServiceRequest() {
+        return serviceRequest;
+    }
+
+    public void setServiceRequest(ServiceRequest serviceRequest) {
+        this.serviceRequest = serviceRequest;
+    }
+
+    public ServiceProvider getServiceProvider() {
+        return serviceProvider;
+    }
+
+    public void setServiceProvider(ServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
+    }
     
+
 }

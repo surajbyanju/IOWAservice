@@ -10,11 +10,11 @@
     </h:head>
     <h:body>
         <f:facet name="title"> List of All the Services</f:facet>
-        
+
         
         <ui:composition template ="template/template.xhtml">
             <ui:define name="content">
-                
+
                 <section id="services" class="services pad-section">
                     <div class="container">
                         <h2 class="text-center">List of </h2> 
@@ -37,18 +37,24 @@
                                     <br/>
                                     <h:outputText value="#{service.userInformation.address.city}" />  
                                     <br/>
-                                    
+
                                     <h:link outcome="viewProviderDetail" value="View Details">
                                         <f:param name="providerId" value="#{service.id}"/>
                                     </h:link> 
+                                    <h:form>
+                                        <h:commandButton action="#{searchProvidersController.viewDetail}" value="Detail">
+                                            <f:setPropertyActionListener target="#{searchProvidersController.serviceProvider}" value="#{service}" />
+                                        </h:commandButton>
+                                       
+                                    </h:form>
                                     <c:set var="count" value="${count+1}"/>
                                 </h:form>
                             </c:forEach>
-                            
+
                         </div>
                     </div>
                 </section>
-                
+
             </ui:define>
         </ui:composition>
     </h:body>

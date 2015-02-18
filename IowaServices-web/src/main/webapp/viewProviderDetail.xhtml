@@ -19,34 +19,41 @@
 
                 <section id="services" class="services pad-section">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <h:form>
-                                    <h4> #{searchProvidersController.serviceProvider.userInformation.fullName}</h4>
-                                    #{searchProvidersController.serviceProvider.username}
-                                    #{searchProvidersController.serviceProvider.id}
-                                    <br/>
-                                    <h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP(searchProvidersController.serviceProvider)}"/>
-                                </h:form>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <h4>User Reviews</h4>
-                                <ui:repeat value="#{searchProvidersController.comments}" var="com">
-                                    <li>#{com.message}    
-                                        <h:outputText value="#{com.creationDate}" >
-                                            <f:convertDateTime pattern="MM dd yyyy HH:mm" />
-                                        </h:outputText>
-                                    </li>
-                                </ui:repeat>
-                                <br />
-                                <h:form>  
-                                    <h:inputTextarea id="messageText"  value="#{sPController.comments.message}" validator="#{componentValidator.validAddress}"/>
-                                    <h:message for="messageText"  style="color:red"/><br />
-                                    <h:commandButton value="write a review" id="postMessage" type="submit" class="btn btn-primary" action="#{sPController.postComment(searchProvidersController.serviceProvider)}"/>
+                        <h:form>
+                            #{searchProvidersController.serviceProvider.userInformation.fullName}<br/>
+                            #{searchProvidersController.serviceProvider.username}
+                            <h:outputText value="#{searchProvidersController.serviceProvider.userInformation.phoneNo}" />
+                            <br/>
+                            <h:outputText value="#{searchProvidersController.serviceProvider.userInformation.address.street}" />
+                            <br/>
+                            <h:outputText value="#{searchProvidersController.serviceProvider.userInformation.address.city}" />
+                            <br/>
+                            <h:outputText value="#{searchProvidersController.serviceProvider.userInformation.address.state}" />  
+                            <br/>
+                            <br/>
+                            <h:link value="Create Service Request" outcome="hireDetails">
+                                <f:param name="providerId" value="#{searchProvidersController.serviceProvider.id}"/>
+                            </h:link>
+                            #{searchProvidersController.serviceProvider}
+                            <h:commandButton action="#{sPController.hireSP}" value="Hire">
+                                <f:param name="service" value="#{searchProvidersController.serviceProvider}" />
+                            </h:commandButton>
+                        </h:form>
 
-                                </h:form>
-                            </div>
-                        </div>
+                        <ui:repeat value="#{searchProvidersController.comments}" var="com">
+                            <li>#{com.message}    
+                                <h:outputText value="#{com.creationDate}" >
+                                    <f:convertDateTime pattern="MM dd yyyy HH:mm" />
+                                </h:outputText>
+                            </li>
+                        </ui:repeat>
+                        <h:form>  
+                            <h:inputTextarea id="messageText"  value="#{sPController.comments.message}" validator="#{componentValidator.validAddress}"/>
+                            <h:message for="messageText"  style="color:red"/>
+                            <h:commandButton value="Post message" id="postMessage" type="submit" class="btn btn-primary" action="#{sPController.postComment(searchProvidersController.serviceProvider)}"/>
+
+                        </h:form>
+
                     </div>
                 </section>
             </ui:define>
