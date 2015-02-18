@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Dashboard</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../template/template.xhtml">	
+            <ui:define name="content">	
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <br/><br/>
+                            <div id="taskRequest">
+                                <h3>Your Service Requests waiting for Acceptance:</h3>
+                                <br/>
+                                <ol class="task-list">
+                                    <ui:repeat value="#{userTaskController.newRequests}" var="req">
+                                    <li>
+                                     
+                                    Request of <b> #{req.workDescription}</b><br/>
+                                    
+                                    on #{req.requestDate}<br/>
+                                    <h:form>
+                                        <h:commandButton  value="Cancel Request" class="btn btn-primary">
+                                           
+                                        </h:commandButton>
+                                        
+                                    </h:form>
+                                    </li>
+                                </ui:repeat>
+                                </ol>
+
+                            </div>
+
+                            <br/><br/>
+                            
+                            <div id="taskCompleted">
+                                <h3>Accepted Service Requests:</h3>
+                                <br/>
+                                <ol class="task-list">
+                                <ui:repeat value="#{userTaskController.completedTasks}" var="req">
+                                    <li>
+                                    Request of <b> #{req.workDescription}</b><br/>
+                                   
+                                    on #{req.requestDate}<br/><br/>
+                                    </li>
+                                </ui:repeat>
+                                </ol>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
