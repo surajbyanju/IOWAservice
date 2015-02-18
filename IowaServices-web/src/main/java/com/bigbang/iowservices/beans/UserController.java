@@ -44,8 +44,8 @@ public class UserController {
     private List<Skill> skillsValue;
     private List<String> selectedSkills;
     private final static String messageLink = "http://localhost:8080/IowaServices-web/validateUser.jsf?userId=";
-    public final static String subject ="Verify Iowa service account ";
-    public final static String finalMessage = "\n\n Thanks for joining us ! \n\n\n\n please click the activation link ";
+    private final static String subject ="Verify Iowa service account ";
+    private final static String finalMessage = "\n\n Thanks for joining us ! \n\n\n\n please click the activation link ";
 
     /**
      * Creates a new instance of UserController
