@@ -30,7 +30,7 @@ public class ServiceProvider extends Users implements Serializable {
     @OneToMany
     private List<Skill> skills;
     
-    @OneToMany
+    @OneToMany(mappedBy = "serviceProvider")
     private List<ServiceRequest> serviceRequests;
     
     @OneToMany(mappedBy = "serviceProvider")

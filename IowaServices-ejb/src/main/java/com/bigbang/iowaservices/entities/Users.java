@@ -39,7 +39,7 @@ public class Users implements Serializable {
     private Boolean enabled;
     @OneToOne(cascade = CascadeType.ALL)
     private UserInformation userInformation;
-    @OneToMany
+    @OneToMany(mappedBy = "users")
     private List<ServiceRequest> serviceRequests;
   
     public Users() {
