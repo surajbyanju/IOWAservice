@@ -10,42 +10,54 @@
     <h:body>
         <ui:composition template="../template/template.xhtml">	
             <ui:define name="content">	
-                Service provider Dashboard
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <br/><br/>
+                            <div id="taskRequest">
+                                <h3>New Task Requests</h3>
+                                <br/>
+                                <ol class="task-list">
+                                <ui:repeat value="#{serviceProviderTaskController.newRequests}" var="req">
+                                    <li>
+                                    Request of <b> #{req.workDescription}</b><br/>
+                                    By #{req.users.userInformation.fullName}<br/>
+                                    on #{req.requestDate}<br/>
+                                    <h:form>
+                                        <h:commandButton action="#{serviceProviderTaskController.approveTask()}" value="Approve" class="btn btn-primary">
+                                            <f:setPropertyActionListener target="#{serviceProviderTaskController.serviceRequest}" value="#{req}" />
+                                        </h:commandButton>
+                                        <h:commandButton action="#{serviceProviderTaskController.rejectTask()}" value="Reject" class="btn btn-primary">
+                                            <f:setPropertyActionListener target="#{serviceProviderTaskController.serviceRequest}" value="#{req}" />
+                                        </h:commandButton>
+                                    </h:form>
+                                    </li>
+                                </ui:repeat>
+                                </ol>
 
-                <br/><br/>
+                            </div>
 
-                <div id="taskRequest">
-                    <h3>New Task Requests</h3>
-                    <br/><br/>
-                    <ui:repeat value="#{serviceProviderTaskController.newRequests}" var="req">
-                        Request of <b> #{req.workDescription}</b><br/>
-                        By #{req.users.userInformation.fullName}<br/>
-                        on #{req.requestDate}<br/>
-                        <h:form>
-                            <h:commandButton action="#{serviceProviderTaskController.approveTask()}" value="Approve">
-                                <f:setPropertyActionListener target="#{serviceProviderTaskController.serviceRequest}" value="#{req}" />
-                            </h:commandButton>
-                            <h:commandButton action="#{serviceProviderTaskController.rejectTask()}" value="Reject">
-                                <f:setPropertyActionListener target="#{serviceProviderTaskController.serviceRequest}" value="#{req}" />
-                            </h:commandButton>
-                        </h:form>
-                    </ui:repeat>
-                 
+                            <br/><br/>
+                            
+                            <div id="taskCompleted">
+                                <h3>Recently Approved Tasks</h3>
+                                <br/>
+                                <ol class="task-list">
+                                <ui:repeat value="#{serviceProviderTaskController.completedTasks}" var="req">
+                                    <li>
+                                    Request of <b> #{req.workDescription}</b><br/>
+                                    By #{req.users.userInformation.fullName}<br/>
+                                    on #{req.requestDate}<br/><br/>
+                                    </li>
+                                </ui:repeat>
+                                </ol>
+                            </div>
+                           
+                        </div>
+                    </div>
                 </div>
-                
-                
-                <br/><br/>
-                <div id="taskCompleted">
-                    <h3>Recently Approved Tasks</h3>
-                    <br/><br/>
-                    <ui:repeat value="#{serviceProviderTaskController.completedTasks}" var="req">
-                        Request of <b> #{req.workDescription}</b><br/>
-                        By #{req.users.userInformation.fullName}<br/>
-                        on #{req.requestDate}<br/><br/>
 
-                    </ui:repeat>
 
-                </div>
 
             </ui:define>
         </ui:composition>
