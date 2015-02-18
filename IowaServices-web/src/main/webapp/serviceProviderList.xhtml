@@ -12,23 +12,27 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="row">
-                    Providers recommended for you:
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        Providers recommended for you:
+                    </div>
+                </div>
+                <div class="row">
+
                     <ui:repeat value="#{searchProvidersController.serviceProviders}" var="service">
-                        
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                             <br />
+                            <h:link outcome="viewProviderDetail" value="#{service.username}">
+                                <f:param name="providerId" value="#{service.id}"/>
+                            </h:link> 
+                            <h:outputText value="#{service.userInformation.fullName}"/>
+                            <br/>
 
-                        <br/>
-                        <br/>
-                        <h:link outcome="viewProviderDetail" value="#{service.username}">
-                            <f:param name="providerId" value="#{service.id}"/>
-                        </h:link> 
-                        <h:outputText value="#{service.userInformation.fullName}"/>
-                        <br/>
-
-                        <h:outputText value="#{service.userInformation.phoneNo}"/>
-                        <br/>
+                            <h:outputText value="#{service.userInformation.phoneNo}"/>
+                            <br/>
 
 
-                        <br/>
+                            <br/>
+                        </div>
                     </ui:repeat>
                 </div>
             </div>

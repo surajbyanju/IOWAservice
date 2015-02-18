@@ -30,13 +30,13 @@ hr{
 }
 
 section.tbl-holder{
-   /* background:#f5f5f5; 
-    border:1px solid #ccc; 
-    border-radius:5px; 
-    padding:10px; 
-    overflow:hidden; 
-    margin:20px auto;*/
-   padding:20px 0;
+    /* background:#f5f5f5; 
+     border:1px solid #ccc; 
+     border-radius:5px; 
+     padding:10px; 
+     overflow:hidden; 
+     margin:20px auto;*/
+    padding:20px 0;
 } 
 table.tblform {width:100%}
 table.tblform tr td{padding:5px}
@@ -116,7 +116,7 @@ table.tblform tr td{padding:5px}
     background:#fff;
 }
 .search-container form:hover {
-box-shadow: 0 0 2px #000;
+    box-shadow: 0 0 2px #000;
 }
 .search-container input[type="text"]{
     border: none;
@@ -152,14 +152,18 @@ table.skill-list  td * { margin:0 !important; padding: 0 !important;}
 
 /*=Themes and Colors
 ---------------------------------------*/
+/*
 .header .navbar-default {
     background-color:#286090;
     border-color: #e7e7e7;
-}
+} 
+*/
 .footer,
 .header .navbar-default {
     background-color:#286090;
     border-color: #286090;
+    background-color:rgba(40, 96, 144, 0.94);
+    border-color: rgba(40, 96, 144, 0.53);
 }
 h1,
 .inner-circle a,

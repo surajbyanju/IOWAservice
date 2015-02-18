@@ -70,7 +70,7 @@
                                 <h:outputLabel for="state " value="Skills: " />
                                 <h:selectManyListbox value="#{userController.selectedSkills}" id="selUserSkills">
                                     <f:selectItems value="#{userController.skillsValue}" var="f"
-                                                   itemLabel="#{f.description}" itemValue="#{f.code}"/>
+                                                   itemLabel="#{f.name}" itemValue="#{f.code}"/>
                                 </h:selectManyListbox>
                                 <h:outputLabel for=" " value="" /> 
 
