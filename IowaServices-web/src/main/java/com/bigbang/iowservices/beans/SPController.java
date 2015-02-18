@@ -49,6 +49,8 @@ public class SPController {
     @ManagedProperty(value = "#{loginController}")
     private LoginController loginController;
     private Users user;
+    private String subject;
+    private String msgBody;
     
     private Comment comments;
     
