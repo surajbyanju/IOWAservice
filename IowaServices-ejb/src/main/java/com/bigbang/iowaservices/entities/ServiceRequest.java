@@ -22,8 +22,10 @@ import javax.persistence.TemporalType;
  * @author sajana
  */
 @NamedQueries({
-    @NamedQuery(name = "findNewRequestForProvider",query = "SELECT s from ServiceRequest s WHERE s.serviceProvider=:user AND s.accepted=FALSE AND (s.isRejected =FALSE OR s.isRejected IS NULL)"),
-    @NamedQuery(name = "findOldRequestForProvider",query = "SELECT s from ServiceRequest s WHERE s.serviceProvider=:user AND s.accepted=TRUE AND (s.isRejected =FALSE OR s.isRejected IS NULL)")
+    @NamedQuery(name = "findNewRequestForProvider", query = "SELECT s from ServiceRequest s WHERE s.serviceProvider=:user AND s.accepted=FALSE AND (s.isRejected =FALSE OR s.isRejected IS NULL)"),
+    @NamedQuery(name = "findOldRequestForProvider", query = "SELECT s from ServiceRequest s WHERE s.serviceProvider=:user AND s.accepted=TRUE AND (s.isRejected =FALSE OR s.isRejected IS NULL)"),
+    @NamedQuery(name = "findNewRequestOfUser", query = "SELECT s from ServiceRequest s WHERE s.users=:user AND s.accepted=False AND (s.isRejected =FALSE OR s.isRejected IS NULL)"),
+    @NamedQuery(name = "findOldRequestOfUser", query = "SELECT s from ServiceRequest s WHERE s.users=:user AND s.accepted=TRUE AND (s.isRejected =FALSE OR s.isRejected IS NULL)")
 })
 @Entity
 public class ServiceRequest implements Serializable {
@@ -111,7 +113,6 @@ public class ServiceRequest implements Serializable {
         this.isRejected = isRejected;
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 0;

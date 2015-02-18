@@ -33,5 +33,7 @@ public interface ServiceRequestFacadeLocal {
 
     public List<ServiceRequest> findActiveTask(Users user);
     public List<ServiceRequest> findInActiveTask(Users user);
+     public List<ServiceRequest> findActiveTaskOfUser(Users user);
+    public List<ServiceRequest> findInActiveTaskOfUser(Users user);
     
 }

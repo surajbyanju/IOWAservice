@@ -40,4 +40,14 @@ public class ServiceRequestFacade extends AbstractFacade<ServiceRequest> impleme
         return em.createNamedQuery("findOldRequestForProvider").setParameter("user", user).getResultList();
     }
     
+    @Override
+    public List<ServiceRequest> findActiveTaskOfUser(Users user) {
+        return em.createNamedQuery("findNewRequestOfUser").setParameter("user", user).getResultList();
+    }
+    
+    @Override
+    public List<ServiceRequest> findInActiveTaskOfUser(Users user) {
+        return em.createNamedQuery("findOldRequestOfUser").setParameter("user", user).getResultList();
+    }
+    
 }

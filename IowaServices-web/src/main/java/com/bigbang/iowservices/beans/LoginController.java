@@ -122,6 +122,9 @@ public class LoginController implements PhaseListener {
             case "ROLE_SP":
                 ec.redirect(ec.getRequestContextPath() + "/serviceProvider/spDashboard.jsf");
                 break;
+                case "ROLE_USER":
+                ec.redirect(ec.getRequestContextPath() + "/users/userDashboard.jsf");
+                break;
         }
         
     }
