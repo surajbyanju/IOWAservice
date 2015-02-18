@@ -44,6 +44,8 @@ public class UserController {
     private List<Skill> skillsValue;
     private List<String> selectedSkills;
     private final static String messageLink = "http://localhost:8080/IowaServices-web/validateUser.jsf?userId=";
+    public final static String subject ="Verify Iowa service account ";
+    public final static String finalMessage = "\n\n Thanks for joining us ! \n\n\n\n please click the activation link ";
 
     /**
      * Creates a new instance of UserController
@@ -73,7 +75,9 @@ public class UserController {
         service.create(user);
 
         String mLink = messageLink + user.getId();
-        emailService.sendEmailAfterRegister(user.getUsername(), mLink);
+        String messageBody = "Dear "+user.getUserInformation().getFullName()+finalMessage+mLink;
+        emailService.serviceRequestEmail(user.getUsername(), subject, messageBody);
+//        emailService.sendEmailAfterRegister(user.getUsername(), mLink);
         FacesContext.getCurrentInstance().addMessage("test", new javax.faces.application.FacesMessage("Thank you for registering. We have sent you a mail to validate you account."));
         return "/home";
     }
@@ -89,7 +93,9 @@ public class UserController {
         spUser2.setSkills(skillList);
         service.create(spUser2);
         String mLink = messageLink + spUser2.getId();
-        emailService.sendEmailAfterRegister(spUser2.getUsername(), mLink);
+        String messageBody = "Dear "+spUser2.getUserInformation().getFullName()+finalMessage+mLink;
+        emailService.serviceRequestEmail(spUser2.getUsername(), subject, messageBody);
+//        emailService.sendEmailAfterRegister(spUser2.getUsername(), mLink);
         FacesContext.getCurrentInstance().addMessage("test", new javax.faces.application.FacesMessage("Thank you for registering. We have sent you a mail to validate you account."));
         return "/home";
     }
