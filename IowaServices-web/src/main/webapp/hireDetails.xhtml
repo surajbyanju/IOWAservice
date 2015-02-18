@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Add Skills</title>
+    </h:head>
+    <h:body>
+        <ui:composition template ="template/template.xhtml">
+            <ui:define name="content">
+                <div class="row">
+                    <section class=" ">
+                        <h3 class="text-center">Create a Service Request </h3> 
+                        <hr/>
+                        <div class="col-md-offset-2 col-md-4">
+<!--                            <h:form id="addSkillForm" prependId="false" >
+                                <h:outputLabel for="startDate" value="Start Date * " />  
+                                <h:inputText id="startDate" label="startDate" class="form-control" value="#{adminController.newSkill.code}" validator="#{componentValidator.validateSkillCode}"/>  
+                                <h:message for="startDate" />
+                                <li>The date you want your work to be begun.</li>
+                                <br/>
+                                
+                                <h:outputLabel for="workDescription" value="Work Description * " />  
+                                <h:inputTextarea id="skillDesc" label="workDescription" class="form-control" value="#{adminController.newSkill.description}"/> 
+                                <br/>
+                                                         <h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP(searchProvidersController.serviceProvider)}"/>
+                            </h:form>-->
+                        </div>
+                        
+                    </section>
+                </div>
+                
+            </ui:define>
+            
+            
+            
+            
+        </ui:composition>
+        
+        
+    </h:body>
+</html>
+

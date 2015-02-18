@@ -24,7 +24,8 @@
                             #{searchProvidersController.serviceProvider.username}
                             #{searchProvidersController.serviceProvider.id}
                             <br/>
-                            <h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP(searchProvidersController.serviceProvider)}"/>
+                            
+<h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP(searchProvidersController.serviceProvider)}"/>
                         </h:form>
 
                         <ui:repeat value="#{searchProvidersController.comments}" var="com">

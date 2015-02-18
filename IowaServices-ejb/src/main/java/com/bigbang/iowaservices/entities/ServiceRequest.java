@@ -21,19 +21,24 @@ import javax.persistence.TemporalType;
  */
 @Entity
 public class ServiceRequest implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-  
+    
     private boolean accepted;
+  //  @startDate
     @Temporal(TemporalType.DATE)
     private Date requestDate;
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    private String workDescription;
     
-   @ManyToOne
-   private ServiceProvider serviceProvider;
-   @ManyToOne
-   private Users users;
+    @ManyToOne
+    private ServiceProvider serviceProvider;
+    @ManyToOne
+    private Users users;
     
     public Long getId() {
         return id;
@@ -42,7 +47,7 @@ public class ServiceRequest implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-       
+    
     public boolean isAccepted() {
         return accepted;
     }
@@ -58,24 +63,38 @@ public class ServiceRequest implements Serializable {
     public void setRequestDate(Date requestDate) {
         this.requestDate = requestDate;
     }
-
+    
+    public Date getStartDate() {
+        return startDate;
+    }
+    
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+    
+    public String getWorkDescription() {
+        return workDescription;
+    }
+    
+    public void setWorkDescription(String workDescription) {
+        this.workDescription = workDescription;
+    }
+    
     public ServiceProvider getServiceProvider() {
         return serviceProvider;
     }
-
+    
     public void setServiceProvider(ServiceProvider serviceProvider) {
         this.serviceProvider = serviceProvider;
     }
-
+    
     public Users getUsers() {
         return users;
     }
-
+    
     public void setUsers(Users users) {
         this.users = users;
     }
-    
-    
     
     @Override
     public int hashCode() {

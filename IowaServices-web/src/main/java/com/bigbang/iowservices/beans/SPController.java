@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package com.bigbang.iowservices.beans;
 
 import com.bigbang.iowaservices.boundary.CommentFacadeLocal;
@@ -32,79 +32,85 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 
 public class SPController {
-
+    
     /**
      * Creates a new instance of SPController
      */
     @EJB
-    ServiceRequestFacadeLocal service;
+            ServiceRequestFacadeLocal service;
     @EJB
-    EmailService emailService;
-
+            EmailService emailService;
+    
     @EJB
-    UsersFacadeLocal userService;
+            UsersFacadeLocal userService;
     @EJB
-    CommentFacadeLocal commentFacade;
+            CommentFacadeLocal commentFacade;
     private ServiceRequest sRequest;
-     @ManagedProperty(value = "#{loginController}")
+    @ManagedProperty(value = "#{loginController}")
     private LoginController loginController;
     private Users user;
-
+    
     private Comment comments;
-
+    
     public SPController() {
         service = new ServiceRequestFacade();
         sRequest = new ServiceRequest();
         comments = new Comment();
-
+        
     }
-
+    
     /**
      *
      * @param serviceProvider
      * @return
      */
     public String hireSP(ServiceProvider serviceProvider) {
-
-//        user = userService.getUserInfo(loginController.getUser().getUsername());
+        
+//        username = userService.getUserInfo(loginController.getUser().getUsername());
         sRequest.setAccepted(Boolean.FALSE);
         sRequest.setServiceProvider(serviceProvider);
         sRequest.setUsers(loginController.getUser());
-        sRequest.setRequestDate(null);
+        sRequest.setRequestDate(new Date());
+        sRequest.setWorkDescription("JUSt dummy for now");
+        sRequest.setStartDate(new Date());
         service.create(sRequest);
-
-        String mLink = "This is the test to sp";
-        emailService.sendEmailAfterRegister(serviceProvider.getUsername(), mLink);
+        subject = "New Service Request";
+        
+        msgBody = "Dear Service Provider " + serviceProvider.getUserInformation().getFullName()
+                + ", \n\n You have a new Service Request!"
+                + "\n\n\n\n please check your Iowa Services account ";
+        
+        emailService.serviceRequestEmail(serviceProvider.getUsername(), subject, msgBody);
         return "home";
     }
-
+    
     public LoginController getLoginController() {
         return loginController;
     }
-
+    
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
-
+    
     public void postComment(ServiceProvider provider) throws IOException {
-
+        
         comments.setServiceProvider(provider);
         
         Date curDate = new Date();
-       
+        
         comments.setCreationDate(curDate);
         commentFacade.create(comments);
-
+        
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         context.redirect(context.getRequestContextPath() + "/viewProviderDetail.jsf?providerId=" + provider.getId());
     }
-
+    
     public Comment getComments() {
         return comments;
     }
-
+    
     public void setComments(Comment comments) {
         this.comments = comments;
     }
-
+    
 }
