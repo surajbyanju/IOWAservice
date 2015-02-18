@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">  
     <body>
         <ui:composition>
 
@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="search-container col-lg-4">
                                     <h:form>
-                                        <input type="text" value="#{searchProvidersController.searchString}" placeholder="Search Service Providers" />
+                                        <h:inputText value="#{searchProvidersController.searchString}" pt:placeholder="Search Service Providers"/>
                                         <h:commandButton action="#{searchProvidersController.searchServiceProviders}" value=""/>
                                     </h:form>
                                 </div>
