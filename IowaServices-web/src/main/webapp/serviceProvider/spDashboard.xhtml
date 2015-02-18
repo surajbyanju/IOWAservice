@@ -2,26 +2,50 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Dashboard</title>
     </h:head>
     <h:body>
         <ui:composition template="../template/template.xhtml">	
             <ui:define name="content">	
-                    Service provider
-                
-                <!--
-                <br></br>
-                <h:outputLabel for="availableJobs" value ="Available Jobs"/>
-                <br></br>
-                
-                <h:outputLabel for="completedJobs" value="Completed Jobs"/>
-                <br></br>
-                <h:outputLabel for="customers" value="customers"/>
-                   
-                -->
+                Service provider Dashboard
 
+                <br/><br/>
+
+                <div id="taskRequest">
+                    <h3>New Task Requests</h3>
+                    <br/><br/>
+                    <ui:repeat value="#{serviceProviderTaskController.newRequests}" var="req">
+                        Request of <b> #{req.workDescription}</b><br/>
+                        By #{req.users.userInformation.fullName}<br/>
+                        on #{req.requestDate}<br/>
+                        <h:form>
+                            <h:commandButton action="#{serviceProviderTaskController.approveTask()}" value="Approve">
+                                <f:setPropertyActionListener target="#{serviceProviderTaskController.serviceRequest}" value="#{req}" />
+                            </h:commandButton>
+                            <h:commandButton action="#{serviceProviderTaskController.rejectTask()}" value="Reject">
+                                <f:setPropertyActionListener target="#{serviceProviderTaskController.serviceRequest}" value="#{req}" />
+                            </h:commandButton>
+                        </h:form>
+                    </ui:repeat>
+                 
+                </div>
+                
+                
+                <br/><br/>
+                <div id="taskCompleted">
+                    <h3>Recently Approved Tasks</h3>
+                    <br/><br/>
+                    <ui:repeat value="#{serviceProviderTaskController.completedTasks}" var="req">
+                        Request of <b> #{req.workDescription}</b><br/>
+                        By #{req.users.userInformation.fullName}<br/>
+                        on #{req.requestDate}<br/><br/>
+
+                    </ui:repeat>
+
+                </div>
 
             </ui:define>
         </ui:composition>

@@ -6,6 +6,8 @@
 package com.bigbang.iowaservices.boundary;
 
 import com.bigbang.iowaservices.entities.ServiceRequest;
+import com.bigbang.iowaservices.entities.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +28,16 @@ public class ServiceRequestFacade extends AbstractFacade<ServiceRequest> impleme
 
     public ServiceRequestFacade() {
         super(ServiceRequest.class);
+    }
+
+    @Override
+    public List<ServiceRequest> findActiveTask(Users user) {
+        return em.createNamedQuery("findNewRequestForProvider").setParameter("user", user).getResultList();
+    }
+    
+    @Override
+    public List<ServiceRequest> findInActiveTask(Users user) {
+        return em.createNamedQuery("findOldRequestForProvider").setParameter("user", user).getResultList();
     }
     
 }

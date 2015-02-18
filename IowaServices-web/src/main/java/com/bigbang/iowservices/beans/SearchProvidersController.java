@@ -57,12 +57,12 @@ public class SearchProvidersController {
 
     public String searchServiceProviders() {
         serviceProviders = searchProviderService.searchServiceProviders(searchString);
-        return "serviceDetails";
+        return "/serviceDetails";
     }
 
     public String spByCode(String code) {
         serviceProviders = searchProviderService.searchServiceProviders(code);
-        return "serviceDetails";
+        return "/serviceDetails";
     }
 
     public void preRenderView(String providerId) {

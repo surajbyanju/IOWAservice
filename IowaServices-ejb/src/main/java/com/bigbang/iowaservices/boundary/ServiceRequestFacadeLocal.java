@@ -6,6 +6,7 @@
 package com.bigbang.iowaservices.boundary;
 
 import com.bigbang.iowaservices.entities.ServiceRequest;
+import com.bigbang.iowaservices.entities.Users;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,8 @@ public interface ServiceRequestFacadeLocal {
     List<ServiceRequest> findRange(int[] range);
 
     int count();
+
+    public List<ServiceRequest> findActiveTask(Users user);
+    public List<ServiceRequest> findInActiveTask(Users user);
     
 }
