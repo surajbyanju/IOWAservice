@@ -69,9 +69,25 @@ public class Address implements Serializable {
     private static Map<String,Object> stateValue;
     static{
         stateValue = new LinkedHashMap<String,Object>();
+        stateValue.put("Alabama", "Alabama"); //label, value
+        stateValue.put("Alaska", "Alaska");
+        stateValue.put("Arizona", "Arizona");
+        
         stateValue.put("Iowa", "Iowa"); //label, value
-        stateValue.put("Ottumwa", "Ottumwa");
-        stateValue.put("Desmoines", "Desmoines");
+        stateValue.put("Kansas", "Kansas");
+        stateValue.put("Georgia", "Georgia");
+        
+        stateValue.put("Florida", "Florida"); //label, value
+        stateValue.put("Oklohoma", "Oklohoma");
+        stateValue.put("Texas", "Texas");
+        
+        stateValue.put("Colorado", "Colorado"); //label, value
+        stateValue.put("Kentuky", "Kentuky");
+        stateValue.put("Minnesota", "Minnesota");
+        
+        stateValue.put("Missisipi", "Missisipi"); //label, value
+        stateValue.put("Missouri", "Missouri");
+        stateValue.put("Pennsylvania", "Pennsylvania");
     }
     
     public Map<String,Object> getStateValue(){
