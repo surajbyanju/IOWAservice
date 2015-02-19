@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Dashboard</title>
     </h:head>
@@ -15,43 +16,49 @@
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <br/><br/>
                             <div id="taskRequest">
-                                <h3>Your Service Requests waiting for Acceptance:</h3>
-                                <br/>
-                                <ol class="task-list">
-                                    <ui:repeat value="#{userTaskController.newRequests}" var="req">
-                                    <li>
-                                     
-                                    Request of <b> #{req.workDescription}</b><br/>
-                                    
-                                    on #{req.requestDate}<br/>
-                                    <h:form>
-                                        <h:commandButton  value="Cancel Request" action="#{userTaskController.removeTask()}" class="btn btn-primary">
-                                            <f:setPropertyActionListener target="#{userTaskController.serviceRequest}" value="#{req}" />
-                                        </h:commandButton>
-                                        
-                                    </h:form>
-                                    </li>
-                                </ui:repeat>
-                                </ol>
+                                <c:if test="#{empty userTaskController.newRequests}">
+                                    <h3> No Pending Service Request</h3>
+                                </c:if>
+                                <c:if test="#{ not empty userTaskController.newRequests}">
+                                    <h3>Your Service Requests waiting for Acceptance:</h3>
+                                    <br/>
+                                    <ol class="task-list">
+                                        <ui:repeat value="#{userTaskController.newRequests}" var="req">
+                                            <li>
 
+                                                Request of <b> #{req.workDescription}</b><br/>
+
+                                                on #{req.requestDate}<br/>
+                                                <h:form>
+                                                    <h:commandButton  value="Cancel Request" action="#{userTaskController.removeTask()}" class="btn btn-primary">
+                                                        <f:setPropertyActionListener target="#{userTaskController.serviceRequest}" value="#{req}" />
+                                                    </h:commandButton>
+
+                                                </h:form>
+                                            </li>
+                                        </ui:repeat>
+                                    </ol>
+                                </c:if>
                             </div>
 
                             <br/><br/>
-                            
+
                             <div id="taskCompleted">
-                                <h3>Accepted Service Requests:</h3>
-                                <br/>
-                                <ol class="task-list">
-                                <ui:repeat value="#{userTaskController.completedTasks}" var="req">
-                                    <li>
-                                    Request of <b> #{req.workDescription}</b><br/>
-                                   
-                                    on #{req.requestDate}<br/><br/>
-                                    </li>
-                                </ui:repeat>
-                                </ol>
+                                <c:if test="#{not empty userTaskController.completedTasks}">
+                                    <h3>Accepted Service Requests:</h3>
+                                    <br/>
+                                    <ol class="task-list">
+                                        <ui:repeat value="#{userTaskController.completedTasks}" var="req">
+                                            <li>
+                                                Request of <b> #{req.workDescription}</b><br/>
+
+                                                on #{req.requestDate}<br/><br/>
+                                            </li>
+                                        </ui:repeat>
+                                    </ol>
+                                </c:if>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
