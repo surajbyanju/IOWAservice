@@ -9,6 +9,9 @@ import com.bigbang.iowaservices.entities.ServiceProvider;
 import com.bigbang.iowaservices.entities.ServiceProvider_;
 import com.bigbang.iowaservices.entities.Skill;
 import com.bigbang.iowaservices.entities.Skill_;
+import com.bigbang.iowaservices.entities.UserInformation;
+import com.bigbang.iowaservices.entities.UserInformation_;
+import com.bigbang.iowaservices.entities.Users;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -43,7 +46,15 @@ public class ServiceProviderFacade extends AbstractFacade<ServiceProvider> imple
         CriteriaQuery<ServiceProvider> criteriaQuery = builder.createQuery(ServiceProvider.class);
         Root<ServiceProvider> root = criteriaQuery.from(ServiceProvider.class);
         Join<ServiceProvider,Skill> join1 = root.join(ServiceProvider_.skills);
-        criteriaQuery.select(root).where(builder.like(join1.get(Skill_.name),"%"+providerString+"%"));
+        Join<ServiceProvider,UserInformation> join2 = root.join(ServiceProvider_.userInformation);
+        criteriaQuery.select(root).where(
+                builder.or(
+                        (builder.like(join1.get(Skill_.name),"%"+providerString+"%")),
+                        (builder.like(join2.get(UserInformation_.firstName),"%"+providerString+"%"))
+                )
+                
+        );
+        criteriaQuery.distinct(true);
         TypedQuery<ServiceProvider> typedQuery = em.createQuery(criteriaQuery);
         
         return typedQuery.getResultList();
