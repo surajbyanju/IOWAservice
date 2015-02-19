@@ -10,6 +10,7 @@
         <intercept-url pattern="/profile.jsf" access="isAuthenticated()" />
         <intercept-url pattern="/changePasswordPage.jsf" access="isAuthenticated()" />
         <intercept-url pattern="/viewProviderDetail.jsf" access="isAuthenticated()" />
+        <intercept-url pattern="/hireDetails.jsf" access="isAuthenticated()" />
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/serviceProvider/**" access="hasRole('ROLE_SP')" />
         <form-login login-page="/login.jsf" authentication-failure-url="/login.jsf?state=failure"/>
