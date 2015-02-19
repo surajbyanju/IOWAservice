@@ -6,6 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <f:metadata>
+        <f:viewParam name="serviceProvider" value="#{searchProvidersController.serviceProvider}" converter="#{providerConverter}" />
         <f:event listener="#{sPController.preRenderView(request.getParameter('providerId'))}" type="preRenderView"/>
     </f:metadata>
     <h:head>
@@ -21,25 +22,27 @@
                         <div class="col-md-offset-2 col-md-4">
                             <h:form id="addSkillForm" prependId="false" >
                                 <h:outputLabel for="startDate" value="Start Date * " />  
-                                
+
                                 <h:message for="startDate" />
                                 <li>The date you want your work to be begun.(yy-mm-dd)</li>
                                 <br/>                                
                                 <h:outputLabel for="workDescription" value="Work Description * "  />  
                                 <h:inputTextarea id="skillDesc" label="workDescription" class="form-control" value="#{sPController.serviceRequest.workDescription}" /> 
+                                <h:message for="skillDesc" style="color: red"/>
                                 <br/>
                                 #{sPController.serviceProvider}
-                                <h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP(sPController.serviceProvider)}">
+                                <h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP}">
+                                    <f:param value="${sPController.serviceProvider.id}" name="serviceProviderId"/>
                                 </h:commandButton>
                             </h:form>
                         </div>
-                        
+
                     </section>
                 </div>
-                
+
             </ui:define>            
         </ui:composition>
-        
+
     </h:body>
 </html>
 

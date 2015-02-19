@@ -70,15 +70,9 @@ public class SearchProvidersController {
         if (!providerId.isEmpty()) {
             serviceProvider = serviceProviderFacadeLocal.find(Long.parseLong(providerId));
             comments=commentFacade.getCommentOfProvider(Long.parseLong(providerId));
-            
         }
     }
     
-    public String viewDetail(){
-        System.out.println("here +++ "+serviceProvider);
-        return "viewProviderDetail";
-    }
-
     public String getSearchString() {
         return searchString;
     }
