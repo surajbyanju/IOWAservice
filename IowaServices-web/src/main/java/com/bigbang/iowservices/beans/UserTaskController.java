@@ -54,7 +54,6 @@ public class UserTaskController {
 
 
     public void removeTask() throws IOException {
-//        serviceRequest.setIsRejected(Boolean.TRUE);
         serviceRequestFacadeLocal.remove(serviceRequest);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());

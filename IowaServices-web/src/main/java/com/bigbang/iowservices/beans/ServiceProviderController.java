@@ -32,10 +32,10 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @RequestScoped
 
-public class SPController {
+public class ServiceProviderController {
 
     /**
-     * Creates a new instance of SPController
+     * Creates a new instance of ServiceProviderController
      */
     @EJB
     ServiceRequestFacadeLocal service;
@@ -58,7 +58,7 @@ public class SPController {
     private Comment comments;
     private ServiceProvider serviceProvider;
 
-    public SPController() {
+    public ServiceProviderController() {
         service = new ServiceRequestFacade();
         serviceRequest = new ServiceRequest();
         comments = new Comment();

@@ -87,7 +87,7 @@ public class AdminController {
     public String addSkill(){
         
         addNewSkill.create(newSkill);
-        return "/services";
+        return "skills";
     }
     
     public String displaySkill(){

@@ -46,10 +46,10 @@
                             </ui:repeat>
                         </table>
                         <h:form id="commentForm">  
-                            <h:inputTextarea id="messageText"  value="#{sPController.comments.message}" cols="50" rows="8"/>
+                            <h:inputTextarea id="messageText"  value="#{serviceProviderController.comments.message}" cols="50" rows="8"/>
                             <div id="commentMessage" style="color: red;display: none;">Please fill the comment</div>
                             <br/>
-                            <h:commandButton value="Comment" id="postMessage" type="submit" class="btn btn-primary" action="#{sPController.postComment}">
+                            <h:commandButton value="Comment" id="postMessage" type="submit" class="btn btn-primary" action="#{serviceProviderController.postComment}">
                                 <f:param value="${searchProvidersController.serviceProvider.id}" name="serviceProviderId"/>
                             </h:commandButton>   
                         </h:form>
