@@ -32,6 +32,7 @@ public interface UsersFacadeLocal {
     
     public Users getUserInfo(String email);
     
+    public List<Users> findActiveUsers();
     
     
     

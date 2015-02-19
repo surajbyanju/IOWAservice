@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,7 +26,10 @@ import javax.validation.constraints.Size;
  * @author dell
  */
 @Entity
-@NamedQuery(name = "findUsersByUsername", query = "SELECT u FROM Users u where u.username = :username")
+@NamedQueries({
+    @NamedQuery(name = "findUsersByUsername", query = "SELECT u FROM Users u where u.username = :username"),
+    @NamedQuery(name = "findActiveUsers",query = "SELECT u from Users u")
+})
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Users implements Serializable {
 

@@ -46,6 +46,9 @@ public class UserController {
     private final static String messageLink = "http://localhost:8080/IowaServices-web/validateUser.jsf?userId=";
     private final static String subject ="Verify Iowa service account ";
     private final static String finalMessage = "\n\n Thanks for joining us ! \n\n\n\n please click the activation link ";
+    
+    private List<Users> activeUsers;
+    private List<Users> inactiveUsers;
 
     /**
      * Creates a new instance of UserController
@@ -53,6 +56,8 @@ public class UserController {
     @PostConstruct
     public void initSkills() {
         skillsValue = skillFacadeLocal.findAll();
+        
+        activeUsers = service.findActiveUsers();
     }
 
     public UserController() {
@@ -60,6 +65,8 @@ public class UserController {
         user = new Users();
         spUser = new ServiceProvider();
         skillsValue = new ArrayList<>();
+        
+        activeUsers   = new ArrayList<>();
     }
 
     public String registerPage() {
@@ -178,4 +185,11 @@ public class UserController {
         this.loginController = loginController;
     }
 
+    public List<Users> getActiveUsers() {
+        return activeUsers;
+    }
+
+    public void setActiveUsers(List<Users> activeUsers) {
+        this.activeUsers = activeUsers;
+    }    
 }

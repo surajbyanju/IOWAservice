@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core" >
     <h:head>
         <title>IAS-Dashboard</title>
     </h:head>
@@ -10,20 +12,37 @@
         <ui:composition template="../template/template.xhtml">	
             <ui:define name="content">	
 
-                <ui:insert name ="header">
-                    <ui:include src ="/serviceProviderList.xhtml"/>
-                </ui:insert>
-                <!--
-                <br></br>
-                <h:outputLabel for="availableJobs" value ="Available Jobs"/>
-                <br></br>
-                
-                <h:outputLabel for="completedJobs" value="Completed Jobs"/>
-                <br></br>
-                <h:outputLabel for="customers" value="customers"/>
-                   
-                -->
+                <div class="container-fluid" >
+                    <div class="container" >
+                        <div class="row">
+                            <section class="tbl-holder ">
 
+                                <h:dataTable class="skill-list" value="#{userController.activeUsers}" var="users" >
+                                    <h:column class="col-md-3">    				
+                                        <f:facet name="header">Username</f:facet>    				
+                                            #{users.username}
+                                    </h:column>
+                                    <h:column  class="col-md-3">
+                                        <f:facet name="header">Status</f:facet>
+                                        <h:outputText value="Active" rendered="#{users.enabled == true}"/>
+                                        <h:outputText value="Inactive" rendered="#{users.enabled == false}"/>
+
+                                    </h:column>
+                                    <h:column  class="col-md-3">
+                                        <f:facet name="header">First Name</f:facet>
+                                            #{users.userInformation.firstName}
+                                    </h:column>
+
+                                    <h:column class="col-md-3">
+                                        <f:facet name="header">Last Name</f:facet>
+                                            #{users.userInformation.lastName}
+                                    </h:column>
+
+                                </h:dataTable>
+                            </section>
+                        </div>
+                    </div>
+                </div>
 
             </ui:define>
         </ui:composition>

@@ -6,6 +6,7 @@
 package com.bigbang.iowaservices.boundary;
 
 import com.bigbang.iowaservices.entities.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -42,4 +43,9 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
         }
     }
 
+    @Override
+    public List<Users> findActiveUsers() {
+        
+        return em.createNamedQuery("findActiveUsers").getResultList();
+    }
 }
