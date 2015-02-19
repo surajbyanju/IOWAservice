@@ -13,27 +13,30 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        Providers recommended for you:
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                    <ui:repeat value="#{searchProvidersController.serviceProviders}" var="service">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                             <br />
-                            <h:link outcome="viewProviderDetail" value="#{service.username}">
-                                <f:param name="providerId" value="#{service.id}"/>
-                            </h:link> 
-                            <h:outputText value="#{service.userInformation.fullName}"/>
-                            <br/>
+                        <h4>Providers recommended for you:</h4>
+                        <br/>
+                        <ol class="task-list">
+                            <ui:repeat value="#{searchProvidersController.serviceProviders}" var="service">
+                                <li class="col-sm-12 col-md-12 col-lg-12">
+                                    <h4><h:link outcome="viewProviderDetail" value="#{service.username}">
+                                        <f:param name="providerId" value="#{service.id}"/>
+                                        </h:link> </h4>
+                                    <h:outputText value="#{service.userInformation.fullName}"/>
+                                    <br/>
 
-                            <h:outputText value="#{service.userInformation.phoneNo}"/>
-                            <br/>
+                                    <h:outputText value="#{service.userInformation.phoneNo}"/>
+                                    <br/>
 
 
-                            <br/>
-                        </div>
-                    </ui:repeat>
+                                    <br/>
+                                </li>
+                            </ui:repeat>
+                        </ol>
                     </div>
                 </div>
             </div>
