@@ -22,7 +22,10 @@
                                     <li>
                                     Request of <b> #{req.workDescription}</b><br/>
                                     By #{req.users.userInformation.fullName}<br/>
-                                    on #{req.requestDate}<br/>
+                                    on 
+                                    <h:outputText value="#{req.requestDate}" >
+                                    <f:convertDateTime pattern="MM dd yyyy HH:mm" />
+                                    </h:outputText>
                                     <h:form>
                                         <h:commandButton action="#{serviceProviderTaskController.approveTask()}" value="Approve" class="btn btn-primary">
                                             <f:setPropertyActionListener target="#{serviceProviderTaskController.serviceRequest}" value="#{req}" />
