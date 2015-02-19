@@ -25,8 +25,8 @@
                                     
                                     on #{req.requestDate}<br/>
                                     <h:form>
-                                        <h:commandButton  value="Cancel Request" class="btn btn-primary">
-                                           
+                                        <h:commandButton  value="Cancel Request" action="#{userTaskController.removeTask()}" class="btn btn-primary">
+                                            <f:setPropertyActionListener target="#{userTaskController.serviceRequest}" value="#{req}" />
                                         </h:commandButton>
                                         
                                     </h:form>

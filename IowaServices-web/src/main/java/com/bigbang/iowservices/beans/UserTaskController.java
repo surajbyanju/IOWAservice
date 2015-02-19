@@ -52,17 +52,10 @@ public class UserTaskController {
         completedTasks = new ArrayList<>();
     }
 
-    public void approveTask() throws IOException {
-        serviceRequest.setAccepted(Boolean.TRUE);
-        serviceRequestFacadeLocal.edit(serviceRequest);
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-//        return "main";
-    }
 
-    public void rejectTask() throws IOException {
-        serviceRequest.setIsRejected(Boolean.TRUE);
-        serviceRequestFacadeLocal.edit(serviceRequest);
+    public void removeTask() throws IOException {
+//        serviceRequest.setIsRejected(Boolean.TRUE);
+        serviceRequestFacadeLocal.remove(serviceRequest);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
