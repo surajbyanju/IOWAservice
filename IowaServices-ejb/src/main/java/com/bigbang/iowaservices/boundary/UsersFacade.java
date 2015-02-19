@@ -45,7 +45,10 @@ public class UsersFacade extends AbstractFacade<Users> implements UsersFacadeLoc
 
     @Override
     public List<Users> findActiveUsers() {
-        
-        return em.createNamedQuery("findActiveUsers").getResultList();
+        try {
+            return em.createNamedQuery("findActiveUsers").getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }
