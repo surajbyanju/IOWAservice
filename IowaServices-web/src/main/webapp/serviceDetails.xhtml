@@ -17,31 +17,33 @@
                         <h2 class="text-center">List of #{searchProvidersController.skillName} </h2> 
                         <hr />
                         <div class="row">
-                            <c:set var="count" value="1"/>                            
-                            <c:forEach items="#{searchProvidersController.serviceProviders}" var="service">
-                                <br/> 
-                                <h:form>
-                                    #{count}.
-                                    <h:outputText value="#{service.userInformation.fullName}"/>
-                                    <br/>
-                                    <h:outputText value="#{service.username}" />
-                                    <br/>
-                                    <h:outputText value="#{service.userInformation.phoneNo}" />
-                                    <br/>
-                                    <h:outputText value="#{service.userInformation.address.street}" />
-                                    <br/>
-                                    <h:outputText value="#{service.userInformation.address.state}" />
-                                    <br/>
-                                    <h:outputText value="#{service.userInformation.address.city}" />  
-                                    <br/>
-                                    <br/>
-                                    <h:link outcome="viewProviderDetail" value="View Details" class="btn btn-primary">
-                                        <f:param name="providerId" value="#{service.id}"/>
-                                    </h:link> 
-                                    <c:set var="count" value="${count+1}"/>
-                                </h:form>
-                            </c:forEach>
-
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <ol class="task-list">
+                                    <c:set var="count" value="1"/>                            
+                                    <c:forEach items="#{searchProvidersController.serviceProviders}" var="service">
+                                        <li>
+                                            <h:form>
+                                                <h4><h:outputText value="#{service.userInformation.fullName}"/></h4>
+                                                <h:outputText value="#{service.username}" />
+                                                <br/>
+                                                <h:outputText value="#{service.userInformation.phoneNo}" />
+                                                <br/>
+                                                <h:outputText value="#{service.userInformation.address.street}" />
+                                                <br/>
+                                                <h:outputText value="#{service.userInformation.address.state}" />
+                                                <br/>
+                                                <h:outputText value="#{service.userInformation.address.city}" />  
+                                                <br/>
+                                                <br/>
+                                                <h:link outcome="viewProviderDetail" value="View Details" class="btn btn-primary">
+                                                    <f:param name="providerId" value="#{service.id}"/>
+                                                </h:link> 
+                                                <c:set var="count" value="${count+1}"/>
+                                            </h:form>
+                                        </li>
+                                    </c:forEach>
+                                </ol>
+                            </div>
                         </div>
                     </div>
                 </section>
