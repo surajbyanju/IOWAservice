@@ -25,7 +25,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-
 /**
  *
  * @author sajana
@@ -72,31 +71,23 @@ public class SPController {
      * @param serviceProvider
      * @return
      */
-    
     public void preRenderView(String providerId) {
-        System.out.println("provider id +++ "+providerId);
         if (!providerId.isEmpty()) {
             serviceProvider = serviceProviderFacadeLocal.find(Long.parseLong(providerId));
-            System.out.println("serv +++ "+serviceProvider);
-            
+            System.out.println("servvvvvvvvv +++ "+serviceProvider);
         }
     }
-    public String hireSP() {
 
-//        username = userService.getUserInfo(loginController.getUser().getUsername());
-        System.out.println("sp+++++ "+serviceProvider);
-        Map<String,String> params =FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-	  String action = params.get("service");
-          System.out.println("action+++ "+action);
+    public String hireSP() {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        serviceProvider = serviceProviderFacadeLocal.find(Long.parseLong(params.get("serviceProviderId")));
+        System.out.println("service pr  "+serviceProvider);
         serviceRequest.setAccepted(Boolean.FALSE);
         serviceRequest.setServiceProvider(serviceProvider);
         serviceRequest.setUsers(loginController.getUser());
         serviceRequest.setRequestDate(new Date());
-        serviceRequest.setWorkDescription("JUSt dummy for now");
         serviceRequest.setStartDate(new Date());
         service.create(serviceRequest);
-
-//        System.out.println("Dear Service Provider " + serviceProvider.getUserInformation().getFullName());
         subject = "New Service Request";
 
         msgBody = "Dear Service Provider " + serviceProvider.getUserInformation().getFullName()
@@ -116,8 +107,9 @@ public class SPController {
         this.loginController = loginController;
     }
 
-    public void postComment(ServiceProvider provider) throws IOException {
-
+    public void postComment() throws IOException {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        ServiceProvider provider = serviceProviderFacadeLocal.find(Long.parseLong(params.get("serviceProviderId")));
         comments.setServiceProvider(provider);
 
         Date curDate = new Date();
@@ -152,6 +144,5 @@ public class SPController {
     public void setServiceProvider(ServiceProvider serviceProvider) {
         this.serviceProvider = serviceProvider;
     }
-    
 
 }
