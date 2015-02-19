@@ -70,7 +70,7 @@ public class ComponentValidator {
         if(componentValue.isEmpty()){
               throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, id+"filed cannot be Empty", id+"filed cannot be Empty"));
 
-        }else if(componentValue.length() > 10 ){
+        }else if(componentValue.length()!= 10 ){
               throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
             
         }
