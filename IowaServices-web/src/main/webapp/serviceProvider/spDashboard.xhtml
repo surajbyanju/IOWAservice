@@ -21,10 +21,10 @@
                                 <ui:repeat value="#{serviceProviderTaskController.newRequests}" var="req">
                                     <li>
                                     Request of <b> #{req.workDescription}</b><br/>
-                                    By #{req.users.userInformation.fullName}<br/>
-                                    on 
+                                    By <b>#{req.users.userInformation.fullName}</b><br/>
+                                    on &nbsp;&nbsp;
                                     <h:outputText value="#{req.requestDate}" >
-                                    <f:convertDateTime pattern="MM dd yyyy HH:mm" />
+                                    <f:convertDateTime pattern="MM-dd-yyyy  HH:mm" />
                                     </h:outputText>
                                     <h:form>
                                         <h:commandButton action="#{serviceProviderTaskController.approveTask()}" value="Approve" class="btn btn-primary">
