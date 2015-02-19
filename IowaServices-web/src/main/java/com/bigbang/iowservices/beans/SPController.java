@@ -74,6 +74,7 @@ public class SPController {
     public void preRenderView(String providerId) {
         if (!providerId.isEmpty()) {
             serviceProvider = serviceProviderFacadeLocal.find(Long.parseLong(providerId));
+            serviceRequest.setStartDate(new Date());
             System.out.println("servvvvvvvvv +++ "+serviceProvider);
         }
     }
@@ -86,7 +87,7 @@ public class SPController {
         serviceRequest.setServiceProvider(serviceProvider);
         serviceRequest.setUsers(loginController.getUser());
         serviceRequest.setRequestDate(new Date());
-        serviceRequest.setStartDate(new Date());
+//        serviceRequest.setStartDate(new Date());
         service.create(serviceRequest);
         subject = "New Service Request";
 

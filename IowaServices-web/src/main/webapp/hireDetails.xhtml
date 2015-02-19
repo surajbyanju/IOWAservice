@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <f:metadata>
         <f:viewParam name="serviceProvider" value="#{searchProvidersController.serviceProvider}" converter="#{providerConverter}" />
         <f:event listener="#{sPController.preRenderView(request.getParameter('providerId'))}" type="preRenderView"/>
@@ -24,13 +24,15 @@
                                 <h:outputLabel for="startDate" value="Start Date * " />  
 
                                 <h:message for="startDate" />
-                                <li>The date you want your work to be begun.(yy-mm-dd)</li>
+                                <h:inputText value="#{sPController.serviceRequest.startDate}" id="startDate">  
+                                    <f:convertDateTime pattern="yyyy-MM-dd"/>  
+                                </h:inputText>
+                                <li>The date you want your work to be begun.(yyyy-MM-dd)</li>
                                 <br/>                                
                                 <h:outputLabel for="workDescription" value="Work Description * "  />  
                                 <h:inputTextarea id="skillDesc" label="workDescription" class="form-control" value="#{sPController.serviceRequest.workDescription}" /> 
                                 <h:message for="skillDesc" style="color: red"/>
                                 <br/>
-                                #{sPController.serviceProvider}
                                 <h:commandButton value="Hire" id="hire" type="submit" class="btn btn-primary" action="#{sPController.hireSP}">
                                     <f:param value="${sPController.serviceProvider.id}" name="serviceProviderId"/>
                                 </h:commandButton>
