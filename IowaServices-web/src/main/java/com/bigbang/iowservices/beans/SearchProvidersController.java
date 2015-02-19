@@ -36,6 +36,7 @@ public class SearchProvidersController {
     private List<ServiceProvider> serviceProviders;
     private ServiceProvider serviceProvider;
     private List<Comment> comments;
+    private String skillName;
 
     /**
      * Creates a new instance of SearchProvidersController
@@ -57,11 +58,13 @@ public class SearchProvidersController {
 
     public String searchServiceProviders() {
         serviceProviders = searchProviderService.searchServiceProviders(searchString);
+        skillName = searchString;
         return "/serviceDetails";
     }
 
     public String spByCode(String code) {
         serviceProviders = searchProviderService.searchServiceProviders(code);
+        skillName = code;
         return "/serviceDetails";
     }
 
@@ -103,6 +106,14 @@ public class SearchProvidersController {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getSkillName() {
+        return skillName;
+    }
+
+    public void setSkillName(String skillName) {
+        this.skillName = skillName;
     }
 
     

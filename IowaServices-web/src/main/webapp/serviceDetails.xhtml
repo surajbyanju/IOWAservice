@@ -14,7 +14,7 @@
             <ui:define name="content">
                 <section id="services" class="services pad-section">
                     <div class="container">
-                        <h2 class="text-center">List of </h2> 
+                        <h2 class="text-center">List of #{searchProvidersController.skillName} </h2> 
                         <hr />
                         <div class="row">
                             <c:set var="count" value="1"/>                            
@@ -34,7 +34,8 @@
                                     <br/>
                                     <h:outputText value="#{service.userInformation.address.city}" />  
                                     <br/>
-                                    <h:link outcome="viewProviderDetail" value="View Details">
+                                    <br/>
+                                    <h:link outcome="viewProviderDetail" value="View Details" class="btn btn-primary">
                                         <f:param name="providerId" value="#{service.id}"/>
                                     </h:link> 
                                     <c:set var="count" value="${count+1}"/>
