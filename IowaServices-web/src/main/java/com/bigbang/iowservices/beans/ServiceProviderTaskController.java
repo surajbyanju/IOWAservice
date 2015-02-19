@@ -7,6 +7,7 @@ package com.bigbang.iowservices.beans;
 
 import com.bigbang.iowaservices.boundary.ServiceRequestFacadeLocal;
 import com.bigbang.iowaservices.entities.ServiceRequest;
+import com.bigbang.iowaservices.services.EmailService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +34,14 @@ public class ServiceProviderTaskController {
     private List<ServiceRequest> newRequests;
     private List<ServiceRequest> completedTasks;
     @EJB
+    EmailService emailService;
+    @EJB
     ServiceRequestFacadeLocal serviceRequestFacadeLocal;
     @ManagedProperty(value = "#{loginController}")
     private LoginController loginController;
     private ServiceRequest serviceRequest;
+    private String subject;
+    private String msgBody;
 
     @PostConstruct
     public void initData() {
@@ -53,16 +58,39 @@ public class ServiceProviderTaskController {
     public void approveTask() throws IOException {
         serviceRequest.setAccepted(Boolean.TRUE);
         serviceRequestFacadeLocal.edit(serviceRequest);
+        subject = " Service Request Approved";
+
+        msgBody = "Dear  " + serviceRequest.getUsers().getUserInformation().getFullName()
+                + ", \n\n Service provider has approved your request.\n";
+        msgBody = msgBody + getRequestDetail(serviceRequest);
+        msgBody = msgBody + "\n\nThank you!!!";
+        emailService.serviceRequestEmail(serviceRequest.getUsers().getUsername(), subject, msgBody);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
 //        return "main";
     }
 
-    public void rejectTask() throws IOException{
+    public void rejectTask() throws IOException {
         serviceRequest.setIsRejected(Boolean.TRUE);
         serviceRequestFacadeLocal.edit(serviceRequest);
+        subject = " Service Request Rejected";
+
+        msgBody = "Dear  " + serviceRequest.getUsers().getUserInformation().getFullName()
+                + ", \n\n Service provider has rejected your request.\n ";
+        msgBody = msgBody + getRequestDetail(serviceRequest);
+        msgBody = msgBody + "\n\nThank you!!!";
+
+        emailService.serviceRequestEmail(serviceRequest.getUsers().getUsername(), subject, msgBody);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+    }
+
+    private String getRequestDetail(ServiceRequest serviceRequest) {
+
+        return "\nRequest Details:\nRequest to: " + serviceRequest.getServiceProvider().getUserInformation().getFullName() 
+                + "\nRequest For: " + serviceRequest.getWorkDescription()
+                + "\nRequest Date: " + serviceRequest.getRequestDate();
+
     }
 
     public List<ServiceRequest> getNewRequests() {
