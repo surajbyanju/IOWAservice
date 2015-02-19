@@ -31,28 +31,28 @@
                             <h:panelGrid columns="2" class="tblform" >
 
                                 <h:outputLabel for="firstName" value="First Name: * "   />  
-                                <h:inputText id="firstName"  class="form-control" value="#{userController.user.userInformation.firstName}"/>  
+                                <h:outputLabel id="firstName"  class="form-control" value="#{userController.user.userInformation.firstName}"/>  
 
                                 <h:outputLabel for="lastName" value="Last Name: * " />  
-                                <h:inputText id="lastName" class="form-control" value="#{userController.user.userInformation.lastName}"/>  
+                                <h:outputLabel id="lastName" class="form-control" value="#{userController.user.userInformation.lastName}"/>  
 
                                 <h:outputLabel for="email" value="Email: * " />  
-                                <h:inputText id="email"  class="form-control" value="#{userController.user.username}"/>  
+                                <h:outputLabel id="email"  class="form-control" value="#{userController.user.username}"/>  
 
                                 <h:outputLabel for="phoneNo" value="Contact number: * "  />  
-                                <h:inputText id="phoneNo"  class="form-control" value="#{userController.user.userInformation.phoneNo}"/>                                                                                           
+                                <h:outputLabel id="phoneNo"  class="form-control" value="#{userController.user.userInformation.phoneNo}"/>                                                                                           
 
                                 <h:outputLabel for="address" value="Address:" />  
                                 <h:outputLabel for="address" value="" /> 
 
                                 <h:outputLabel for="street" value="Street: " />  
-                                <h:inputText id="street"  class="form-control" value="#{userController.user.userInformation.address.street}"/>  
+                                <h:outputLabel id="street"  class="form-control" value="#{userController.user.userInformation.address.street}"/>  
 
                                 <h:outputLabel for="city" value="City: " />  
-                                <h:inputText id="city"  class="form-control" value="#{userController.user.userInformation.address.city}"/> 
+                                <h:outputLabel id="city"  class="form-control" value="#{userController.user.userInformation.address.city}"/> 
 
                                 <h:outputLabel for="state" value="State " />  
-                                <h:inputText id="state" class="form-control" value="#{userController.user.userInformation.address.state}"/> 
+                                <h:outputLabel id="state" class="form-control" value="#{userController.user.userInformation.address.state}"/> 
                                 
                                 <h:outputLabel for="" value="" /> 
                                 <h:commandButton action="#{userController.editUserInfo()}" type="submit"  value="Edit" class="btn-primary btn"/>
